@@ -6,7 +6,7 @@ int main()
 {
     //bizarre ce truc
     int nombre1 = 0;
-    int chef3;
+    int chef98;
     int nombre2 = 0;
     int nombre3 = 0;
     cout << "Saisissez le nombre 1 :" << endl;
