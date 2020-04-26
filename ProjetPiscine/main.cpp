@@ -4,6 +4,7 @@ using namespace std;
 
 int main()
 {
+    // j'ai rajouté ce commentaire
     //bizarre ce truc
     int nombre1 = 0;
     int chef98;
