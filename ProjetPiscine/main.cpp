@@ -11,6 +11,7 @@ int main()
     int nombre3 = 0;
     cout << "Saisissez le nombre 1 :" << endl;
     cout << "Saisissez le nombre 2 :" << endl;
+    cout <<"rajout de cette ligne là"<<endl;
     cin >> nombre1;
     cin >> nombre2;
     return 0;
