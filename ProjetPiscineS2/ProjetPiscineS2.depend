@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1587994095 source:c:\users\subes\projet-piscine\projetpiscine\projetpiscines2\projetpiscines2\main.cpp
+	"graphe.h"
+
+1587994095 c:\users\subes\projet-piscine\projetpiscine\projetpiscines2\projetpiscines2\graphe.h
+	<fstream>
+	<sstream>
+	<iostream>
+	<stdio.h>
+	<vector>
+
+1587994095 source:c:\users\subes\projet-piscine\projetpiscine\projetpiscines2\projetpiscines2\svgfile.cpp
+	"svgfile.h"
+	<iostream>
+	<sstream>
+
+1587994095 c:\users\subes\projet-piscine\projetpiscine\projetpiscines2\projetpiscines2\svgfile.h
+	<string>
+	<fstream>
+	<set>
+
+1587995485 source:c:\users\subes\projet-piscine\projetpiscine\projetpiscines2\projetpiscines2\graphe.cpp
+	"graphe.h"
+

@@ -19,8 +19,16 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2)
     ifs >> oriente;
     ifs >> ordre;
     std::cout << "Ouverture des 2 fichiers:" << std::endl ;
-    std::cout << "Oriente:" << oriente << std::endl;
-    std::cout << "Ordre :" << ordre<< std::endl ;
+    if (oriente ==0)
+    {
+        std::cout << "Orientation: non oriente"<< std::endl;
+    }
+    else
+    {
+        std::cout << "Orientation : oriente" << std::endl;
+    }
+
+    std::cout << "Il y'a " << ordre<<" sommets" << std::endl ;
     for (int i=2; i<ordre+2; i++)
     {
         ifs >> numsommet;
@@ -54,5 +62,4 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2)
         std::cout << poids << std::endl;
 
     }
-
 }
