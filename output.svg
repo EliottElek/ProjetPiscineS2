@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1000" height="800">
 
-<<<<<<< HEAD
 <circle cx="525" cy="80" r="2" fill="red" />
 <circle cx="350" cy="160" r="2" fill="red" />
 <circle cx="700" cy="160" r="2" fill="red" />
@@ -15,34 +10,6 @@
 <circle cx="700" cy="320" r="2" fill="red" />
 <circle cx="175" cy="400" r="2" fill="red" />
 <circle cx="875" cy="400" r="2" fill="red" />
-=======
-<circle cx="525" cy="80" r="3" fill="black" />
-<text x="525" y="70" fill="black" >coucuo</text>
-<circle cx="350" cy="160" r="3" fill="black" />
-<text x="350" y="150" fill="black" >coucuo</text>
-<circle cx="700" cy="160" r="3" fill="black" />
-<text x="700" y="150" fill="black" >coucuo</text>
-<circle cx="525" cy="240" r="3" fill="black" />
-<text x="525" y="230" fill="black" >coucuo</text>
-<circle cx="350" cy="320" r="3" fill="black" />
-<text x="350" y="310" fill="black" >coucuo</text>
-<circle cx="525" cy="320" r="3" fill="black" />
-<text x="525" y="310" fill="black" >coucuo</text>
-<circle cx="700" cy="320" r="3" fill="black" />
-<text x="700" y="310" fill="black" >coucuo</text>
-<circle cx="175" cy="400" r="3" fill="black" />
-<text x="175" y="390" fill="black" >coucuo</text>
-<circle cx="875" cy="400" r="3" fill="black" />
-<text x="875" y="390" fill="black" >coucuo</text>
->>>>>>> 7125b530c4e16f36fe5bd6c9b401b135ec1d5a61
 
 
 </svg>
-=======
->>>>>>> parent of e92582c... update
-=======
->>>>>>> parent of e92582c... update
-=======
->>>>>>> parent of e92582c... update
-=======
->>>>>>> parent of 7125b53... dessin encore et encore
