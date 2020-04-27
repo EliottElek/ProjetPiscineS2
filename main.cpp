@@ -16,9 +16,13 @@ int main()
     Svgfile svgout;
     for(unsigned int i = 0; i < tabsommet.size(); i++)
     {
-    std::cout<<"Sommet"<<i+1<<"x :"<<tabsommet[i]->getx()<<"y :"<<tabsommet[i]->gety()<<std::endl;
-        //g.draw(svgout, tabsommet[i]->getx()*175, tabsommet[i]->gety()*80, 2, tabsommet[i]->getid());
-        g.draw(svgout, tabsommet[i]->getx()*175, tabsommet[i]->gety()*80, 2, tabsommet[i]->getid(), tabarete[i]->getsommet1(), tabarete[i]->getsommet2());
+        std::cout<<"Sommet"<<i<<" x: "<<tabsommet[i]->getx()<<" y: "<<tabsommet[i]->gety()<<std::endl;
+        g.drawSommet(svgout, tabsommet[i]->getx()*175, tabsommet[i]->gety()*80, 2, tabsommet[i]->getid());
+    }
+    for(unsigned int j = 0; j < tabarete.size(); j++)
+    {
+        std::cout<<"il existe une arete entre le sommet "<<tabarete[j]->getsommet1()<<" et le sommet "<<tabarete[j]->getsommet2()<<std::endl;
+        g.drawArcs(svgout, (tabsommet[tabarete[j]->getsommet1()])->getx()*175,(tabsommet[tabarete[j]->getsommet1()])->gety()*80,(tabsommet[tabarete[j]->getsommet2()])->getx()*175,(tabsommet[tabarete[j]->getsommet2()])->gety()*80);
 
     }
     return 0;

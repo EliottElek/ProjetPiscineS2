@@ -10,7 +10,7 @@ class Couleur
 
     public :
         Couleur(int rouge, int vert, int bleu);
-        Couleur();//par défaut
+        Couleur();//par dï¿½faut
         void afficher() const;
         void saisir();
 

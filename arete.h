@@ -15,16 +15,15 @@ private :
 
 public:
 
-    arete (int numero,std:: string color,int sommet1,int sommet2,int id, int poids);
+     arete (int numero,std:: string color,int sommet1,int sommet2,int id, int poids);
     ~arete();
-
     int getnum ()const;
     int getsommet1 ()const;
     int getsommet2() const;
     int getid()const;
     int getpoids()const;
-    int getx ()const;
-    int gety ()const;
+    int getx()const;
+    int gety()const;
 
 
 

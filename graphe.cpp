@@ -69,9 +69,12 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2, std::vector<so
     }
 }
 
-void Graphe:: draw(Svgfile& h, int x, int y, int r, std::string id, int sommet1, int sommet2)
+void Graphe:: drawSommet(Svgfile& h, int x, int y, int r, std::string id)
 {
     h.addDisk(x, y,  r, "red");
     h.addText(x, y-10, id, "red");
-//    h.addLine(sommet1.getx(), sommet1.gety(), sommet2.getx(), sommet2.gety(), "red");
+}
+void Graphe:: drawArcs(Svgfile& h, int x1, int y1, int x2, int y2)
+{
+    h.addLine(x1,y1,x2,y2,"red");
 }

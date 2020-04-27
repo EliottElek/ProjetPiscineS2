@@ -45,11 +45,12 @@
 	<fstream>
 	<set>
 
-1588009968 source:c:\users\eliot\projetpiscines2\graphe.cpp
+1588019699 source:c:\users\eliot\projetpiscines2\graphe.cpp
 	"graphe.h"
 	"sommet.h"
+	"arete.h"
 
-1588010037 c:\users\eliot\projetpiscines2\graphe.h
+1588018615 c:\users\eliot\projetpiscines2\graphe.h
 	<fstream>
 	<sstream>
 	<iostream>
@@ -59,13 +60,14 @@
 	"sommet.h"
 	"arete.h"
 
-1588010256 source:c:\users\eliot\projetpiscines2\main.cpp
+1588019639 source:c:\users\eliot\projetpiscines2\main.cpp
 	"graphe.h"
 	"couleur.h"
 	"svgfile.h"
 	"sommet.h"
+	"arete.h"
 
-1588010163 source:c:\users\eliot\projetpiscines2\sommet.cpp
+1588013633 source:c:\users\eliot\projetpiscines2\sommet.cpp
 	"sommet.h"
 
 1587996598 source:c:\users\eliot\projetpiscines2\svgfile.cpp
@@ -131,10 +133,10 @@
 1588012397 source:c:\users\cap\projetpiscines2\arete.cpp
 	"arete.h"
 
-1588001460 source:c:\users\eliot\projetpiscines2\arete.cpp
+1588018584 source:c:\users\eliot\projetpiscines2\arete.cpp
 	"arete.h"
 
-1588001460 c:\users\eliot\projetpiscines2\arete.h
+1588018584 c:\users\eliot\projetpiscines2\arete.h
 	<string>
 
 1587997436 source:c:\users\eliot\projetpiscines2\couleur.cpp
@@ -142,10 +144,10 @@
 	"svgfile.h"
 	<iostream>
 
-1587997394 c:\users\eliot\projetpiscines2\couleur.h
+1588014411 c:\users\eliot\projetpiscines2\couleur.h
 	<string>
 	<cstdint>
 
-1588009458 c:\users\eliot\projetpiscines2\sommet.h
+1588013633 c:\users\eliot\projetpiscines2\sommet.h
 	<string>
 
