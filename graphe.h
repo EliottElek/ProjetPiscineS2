@@ -17,9 +17,9 @@ private :
     std::vector <arete*> m_aretes;
 
 public :
-    Graphe(std::string nomFichier, std::string nomFichier2, std::vector<sommet*>&sommet);
-    //void draw(Svgfile& h, int x, int y, int r, std::string id,int sommet1, int sommet2);
-    void draw(Svgfile& h, int x, int y, int r, std::string id);
+    Graphe(std::string nomFichier, std::string nomFichier2, std::vector<sommet*>&sommet, std::vector <arete*>& arete);
+    void draw(Svgfile& h, int x, int y, int r, std::string id,int sommet1, int sommet2);
+    //void draw(Svgfile& h, int x, int y, int r, std::string id);
 };
 
 

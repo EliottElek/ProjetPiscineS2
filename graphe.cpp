@@ -2,7 +2,7 @@
 #include "sommet.h"
 #include "arete.h"
 
-Graphe :: Graphe(std::string nomFichier, std::string nomFichier2, std::vector<sommet*>&tabsommet)
+Graphe :: Graphe(std::string nomFichier, std::string nomFichier2, std::vector<sommet*>&tabsommet, std::vector<arete*>&tabarete)
 {
     std::vector <std::string> id;
     int oriente, ordre, numsommet, x, y, taille, idarete, sommet1, sommet2, taille2, idarete2, poids ;
@@ -54,6 +54,7 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2, std::vector<so
         std::cout << " Sommet1 : " << sommet1;
         ifs >> sommet2;
         std::cout << " Sommet2 : " << sommet2 << std::endl;
+        tabarete.push_back(new arete(j,"blue",sommet1,sommet2,idarete, poids));
     }
 
     ifs2 >> taille2;
@@ -68,8 +69,7 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2, std::vector<so
     }
 }
 
-//void Graphe:: draw(Svgfile& h, int x, int y, int r, std::string id, int sommet1, int sommet2)
-void Graphe:: draw(Svgfile& h, int x, int y, int r, std::string id)
+void Graphe:: draw(Svgfile& h, int x, int y, int r, std::string id, int sommet1, int sommet2)
 {
     h.addDisk(x, y,  r, "red");
     h.addText(x, y-10, id, "red");

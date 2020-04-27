@@ -33,3 +33,12 @@ arete::~arete()
     {
         return m_poids;
     }
+
+    int arete::getx ()const
+{
+    return m_x;
+}
+int arete::gety() const
+{
+    return m_y;
+}

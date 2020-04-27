@@ -6,6 +6,7 @@ class arete
 {
 private :
 
+    int m_x, m_y;
     int m_numero;
     std:: string m_color;
     int m_sommet1, m_sommet2;
@@ -22,6 +23,8 @@ public:
     int getsommet2() const;
     int getid()const;
     int getpoids()const;
+    int getx ()const;
+    int gety ()const;
 
 
 
