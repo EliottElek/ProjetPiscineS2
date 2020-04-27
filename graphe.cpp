@@ -1,9 +1,8 @@
 #include "graphe.h"
 #include "sommet.h"
 
-Graphe :: Graphe(std::string nomFichier, std::string nomFichier2)
+Graphe :: Graphe(std::string nomFichier, std::string nomFichier2, std::vector <sommet*> &tabsommet)
 {
-    sommet* s1;
     int oriente, ordre, numsommet, x, y, taille, idarete, sommet1, sommet2, taille2, idarete2, poids ;
     char idsommet;
     std::istringstream iss;
@@ -33,21 +32,16 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2)
     std::cout << "Il y'a " << ordre<<" sommets" << std::endl ;
     for (int i=2; i<ordre+2; i++)
     {
-        sommet* nouveau = new sommet;
         ifs >> numsommet;
         std::cout << "Num sommet : " << numsommet;
         ifs >> idsommet;
         std::cout << " Idsommet : " << idsommet;
         ifs >> x;
         std::cout << " x : " << x;
-        nouveau->setx(x);
         //s1.x=setx(x);
         ifs >> y ;
         std::cout << " y : " << y << std::endl;
-        nouveau->sety(y);
-        //s1->sety(y);
-
-        m_sommets.push_back(nouveau);
+        tabsommet.push_back(new sommet(i,"blue",x,y,'a'));
     }
     ifs >> taille;
     std::cout << " Taille :" << taille << std::endl;
@@ -73,13 +67,7 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2)
     }
 }
 
-void Graphe:: draw(Svgfile& h, std::vector <sommet*> sommet)
+void Graphe:: draw(Svgfile& h, int x, int y, int r)
 {
-    for (int i=0; i<m_ordre; i++)
-    {
-        h.addDisk((sommet[i]->getx())*10,(sommet[i]->gety())*10,10, "black");
-        h.addDisk(2, 3,10, "black");
-    }
-
-    //h.addLine(3, 30, 300, 300, "red");
+    h.addDisk(x, y,  r, "red");
 }

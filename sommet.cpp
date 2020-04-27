@@ -1,19 +1,8 @@
 #include "sommet.h"
 
-sommet ::sommet (int numero,std:: string color,int x,int y,char id)
+sommet ::sommet (int numero,std:: string color,int x,int y,char id):m_numero{numero},m_color{color},m_x{x},m_y{y},m_id{id}
 {
-    m_numero=numero;
-    m_color = color;
-    m_x = x;
-    m_y = y;
-    m_id = id;
 }
-
-sommet :: sommet ()
-{
-
-}
-
 sommet :: ~sommet()
 {
 

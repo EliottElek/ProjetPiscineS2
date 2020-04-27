@@ -9,11 +9,12 @@
 
 int main()
 {
-    std::vector <sommet*> sommet;
-    Graphe g{"fichier1.txt", "fichier2.txt"};
+    std::vector<sommet*> tabsommet;
+    Graphe g{"fichier1.txt", "fichier2.txt",tabsommet};
     Svgfile svgout;
-    g.draw(svgout, sommet);
-
+    for(unsigned int i = 0; i < tabsommet.size(); i++)
+    //std::cout<<"Sommet"<<i+1<<"x :"<<tabsommet[i]->getx()<<"y :"<<tabsommet[i]->gety()<<std::endl;
+        g.draw(svgout, tabsommet[i]->getx()*175, tabsommet[i]->gety()*80, 2);
 
     return 0;
 }

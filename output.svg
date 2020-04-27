@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1000" height="800">
+
+<circle cx="525" cy="80" r="2" fill="red" />
+<circle cx="350" cy="160" r="2" fill="red" />
+<circle cx="700" cy="160" r="2" fill="red" />
+<circle cx="525" cy="240" r="2" fill="red" />
+<circle cx="350" cy="320" r="2" fill="red" />
+<circle cx="525" cy="320" r="2" fill="red" />
+<circle cx="700" cy="320" r="2" fill="red" />
+<circle cx="175" cy="400" r="2" fill="red" />
+<circle cx="875" cy="400" r="2" fill="red" />
+
+
+</svg>
