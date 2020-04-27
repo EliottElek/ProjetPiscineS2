@@ -70,18 +70,21 @@
 	<fstream>
 	<set>
 
-1587998622 source:c:\users\cap\projetpiscines2\graphe.cpp
+1588000071 source:c:\users\cap\projetpiscines2\graphe.cpp
 	"graphe.h"
 
-1587998844 c:\users\cap\projetpiscines2\graphe.h
+1588000596 c:\users\cap\projetpiscines2\graphe.h
 	<fstream>
 	<sstream>
 	<iostream>
 	<stdio.h>
 	<vector>
 	"svgfile.h"
+	"sommet.h"
+	"arete.h"
 
-1587998623 source:c:\users\cap\projetpiscines2\sommet.cpp
+1588001314 source:c:\users\cap\projetpiscines2\sommet.cpp
+	"sommet.h"
 
 1587998623 source:c:\users\cap\projetpiscines2\svgfile.cpp
 	"svgfile.h"
@@ -106,4 +109,13 @@
 	"graphe.h"
 	"couleur.h"
 	"svgfile.h"
+
+1588000979 c:\users\cap\projetpiscines2\sommet.h
+	<string>
+
+1588001314 c:\users\cap\projetpiscines2\arete.h
+	<string>
+
+1588000596 source:c:\users\cap\projetpiscines2\arete.cpp
+	"arete.h"
 
