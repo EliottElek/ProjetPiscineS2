@@ -1,6 +1,5 @@
 ///Projet piscine de Capucine Plantecoste, Subeshan Koneswaran, Eliott Morcillo
-///Projet de la semaine du 27/04/2020 
-
+///Projet de la semaine du 27/04/2020
 #include <iostream>
 #include<stdio.h>
 #include <fstream>
@@ -10,7 +9,6 @@
 
 int main()
 {
-    //COMMENTAIRE SUBE
     int oriente, ordre, numsommet, x, y, taille, idarete, sommet1, sommet2, taille2, idarete2, poids ;
     char idsommet;
     std::istringstream iss;
@@ -27,44 +25,41 @@ int main()
     }
     ifs >> oriente;
     ifs >> ordre;
-    std::cout << "oriente:" << oriente << std::endl;
-    std::cout << "ordre :" << ordre<< std::endl ;
+    std::cout << "Ouverture des 2 fichiers:" << std::endl ;
+    std::cout << "Oriente:" << oriente << std::endl;
+    std::cout << "Ordre :" << ordre<< std::endl ;
     for (int i=2; i<ordre+2; i++)
     {
         ifs >> numsommet;
-        std::cout << " num sommet : " << numsommet;
+        std::cout << "Num sommet : " << numsommet;
         ifs >> idsommet;
-        std::cout << " idsommet : " << idsommet;
+        std::cout << " Idsommet : " << idsommet;
         ifs >> x;
         std::cout << " x : " << x;
         ifs >> y ;
         std::cout << " y : " << y << std::endl;
     }
     ifs >> taille;
-    ifs2 >> taille2;
-    std::cout << " taille :" << taille << std::endl;
+    std::cout << " Taille :" << taille << std::endl;
     for (int j=ordre+4 ; j<ordre+4+taille; j++)
     {
-
-        for (int i=1; i<taille+1; i++)
-        {
-            ifs2 >> idarete2 ;
-
-            ifs2 >> poids;
-        }
-
-
         ifs >> idarete;
-        std::cout << " idarete : " << idarete;
+        std::cout << "Idarete : " << idarete;
         ifs >> sommet1;
-        std::cout << " sommet1 : " << sommet1;
+        std::cout << " Sommet1 : " << sommet1;
         ifs >> sommet2;
-        std::cout << " sommet2 : " << sommet2 ;
-        std::cout << " Son poids : " << poids << std::endl;
+        std::cout << " Sommet2 : " << sommet2 << std::endl;
     }
 
+    ifs2 >> taille2;
+    std::cout << std::endl;
+    for (int i=1; i<taille+1; i++)
+    {
+        ifs2 >> idarete2 ;
+        std :: cout << "Poids de l'arete " << idarete2 << " :" ;
+        ifs2 >> poids;
+        std::cout << poids << std::endl;
 
+    }
     return 0;
 }
-
-
