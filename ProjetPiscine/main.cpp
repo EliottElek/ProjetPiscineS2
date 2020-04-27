@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
     // j'ai rajouté ce commentaire
-    //bizarre ce truc
+    //bizarre ce truc oui
     int nombre1 = 0;
     int chef98;
     int nombre2 = 0;
