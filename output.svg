@@ -2,14 +2,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1000" height="800">
 
 <circle cx="525" cy="80" r="2" fill="red" />
+<text x="525" y="70" fill="red" >A</text>
 <circle cx="350" cy="160" r="2" fill="red" />
+<text x="350" y="150" fill="red" >B</text>
 <circle cx="700" cy="160" r="2" fill="red" />
+<text x="700" y="150" fill="red" >C</text>
 <circle cx="525" cy="240" r="2" fill="red" />
+<text x="525" y="230" fill="red" >D</text>
 <circle cx="350" cy="320" r="2" fill="red" />
+<text x="350" y="310" fill="red" >E</text>
 <circle cx="525" cy="320" r="2" fill="red" />
+<text x="525" y="310" fill="red" >F</text>
 <circle cx="700" cy="320" r="2" fill="red" />
+<text x="700" y="310" fill="red" >G</text>
 <circle cx="175" cy="400" r="2" fill="red" />
+<text x="175" y="390" fill="red" >H</text>
 <circle cx="875" cy="400" r="2" fill="red" />
+<text x="875" y="390" fill="red" >I</text>
 
 
 </svg>

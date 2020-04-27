@@ -1,7 +1,7 @@
 #include "sommet.h"
 
 
-sommet ::sommet (int numero,std:: string color,int x,int y,char id):m_numero{numero},m_color{color},m_x{x},m_y{y},m_id{id}{}
+sommet ::sommet (int numero,std:: string color,int x,int y,std::string id):m_numero{numero},m_color{color},m_x{x},m_y{y},m_id{id}{}
 sommet :: ~sommet()
 {
 
@@ -20,7 +20,7 @@ int sommet::gety() const
 {
     return m_y;
 }
-char sommet::getid()const
+std::string sommet::getid()const
 {
     return m_id;
 }
@@ -33,4 +33,7 @@ void sommet::sety (int y)
 {
     m_y=y;
 }
+
+
+
 

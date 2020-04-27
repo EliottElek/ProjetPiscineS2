@@ -10,18 +10,18 @@ private :
     int m_numero;
     std:: string m_color;
     int m_x,m_y;
-    char m_id;
+    std::string m_id;
 
 public:
 
-    sommet (int numero,std:: string color,int x,int y,char id);
+    sommet (int numero,std:: string color,int x,int y,std::string id);
     ~sommet();
     sommet ();
 
     int getnum ()const;
     int getx ()const;
     int gety() const;
-    char getid()const;
+    std::string getid()const;
     void setx (int x);
     void sety(int y);
 

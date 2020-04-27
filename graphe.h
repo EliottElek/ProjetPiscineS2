@@ -18,7 +18,8 @@ private :
 
 public :
     Graphe(std::string nomFichier, std::string nomFichier2, std::vector<sommet*>&sommet);
-    void draw(Svgfile& h, int x, int y, int r);
+    //void draw(Svgfile& h, int x, int y, int r, std::string id,int sommet1, int sommet2);
+    void draw(Svgfile& h, int x, int y, int r, std::string id);
 };
 
 
