@@ -1,11 +1,15 @@
 #include "graphe.h"
 #include "sommet.h"
+#include "svgfile.h"
 
-Graphe :: Graphe(std::string nomFichier, std::string nomFichier2)
+Graphe :: Graphe(std::string nomFichier, std::string nomFichier2, Svgfile&h)
 {
-    sommet* s1;
+
+    std::vector <int> sommet ;
+    std::vector <std::string> id;
+    //sommet* s1;
     int oriente, ordre, numsommet, x, y, taille, idarete, sommet1, sommet2, taille2, idarete2, poids ;
-    char idsommet;
+    std::string idsommet;
     std::istringstream iss;
     std::string strvalues ;
     std::ifstream ifs(nomFichier);  // on ouvre en lecture
@@ -33,21 +37,30 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2)
     std::cout << "Il y'a " << ordre<<" sommets" << std::endl ;
     for (int i=2; i<ordre+2; i++)
     {
-        sommet* nouveau = new sommet;
+        //sommet* nouveau = new sommet;
         ifs >> numsommet;
         std::cout << "Num sommet : " << numsommet;
         ifs >> idsommet;
         std::cout << " Idsommet : " << idsommet;
+        id.push_back(idsommet);
         ifs >> x;
         std::cout << " x : " << x;
-        nouveau->setx(x);
+        sommet.push_back(x);
+        //nouveau->setx(x);
         //s1.x=setx(x);
         ifs >> y ;
         std::cout << " y : " << y << std::endl;
-        nouveau->sety(y);
+        sommet.push_back(y);
+        //y = bloc[i].gety();
+        //nouveau->sety(y);
         //s1->sety(y);
 
-        m_sommets.push_back(nouveau);
+
+        //m_sommets.push_back(nouveau);
+        h.addDisk(x*175, y*80,3, "black");
+        h.addText(x*175, y*80-10, id, "black");
+
+
     }
     ifs >> taille;
     std::cout << " Taille :" << taille << std::endl;
@@ -73,13 +86,14 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2)
     }
 }
 
-void Graphe:: draw(Svgfile& h, std::vector <sommet*> sommet)
+void Graphe:: draw(Svgfile& h)
 {
-    for (int i=0; i<m_ordre; i++)
+    for (int i=0; i<20; i++)
     {
-        h.addDisk((sommet[i]->getx())*10,(sommet[i]->gety())*10,10, "black");
-        h.addDisk(2, 3,10, "black");
-    }
+        //h.addDisk(20, 20,10, "black");
+        //h.addDisk(bloc[i].x, bloc[i].y, 10, "black");
 
-    //h.addLine(3, 30, 300, 300, "red");
+    }
+    ///h.addDisk((sommet[0]->getx()),(sommet[0]->gety()),10, "black");
+
 }

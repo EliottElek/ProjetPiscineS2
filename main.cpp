@@ -10,9 +10,10 @@
 int main()
 {
     std::vector <sommet*> sommet;
-    Graphe g{"fichier1.txt", "fichier2.txt"};
+
     Svgfile svgout;
-    g.draw(svgout, sommet);
+    Graphe g{"fichier1.txt", "fichier2.txt", svgout};
+    g.draw(svgout);
 
 
     return 0;
