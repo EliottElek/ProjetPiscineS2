@@ -1,3 +1,4 @@
+///Projet piscine de Capucine Plantecoste, Subeshan Koneswaran, Eliott Morcillo
 #include <iostream>
 #include<stdio.h>
 #include <fstream>
