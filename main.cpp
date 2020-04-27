@@ -21,10 +21,9 @@ int main()
         g.draw(svgout, tabsommet[i]->getx()*175, tabsommet[i]->gety()*80, 2);
 =======
     std::vector <sommet*> sommet;
-
+    Graphe g{"fichier1.txt", "fichier2.txt"};
     Svgfile svgout;
-    Graphe g{"fichier1.txt", "fichier2.txt", svgout};
-    g.draw(svgout);
+    g.draw(svgout, sommet);
 
 >>>>>>> 7125b530c4e16f36fe5bd6c9b401b135ec1d5a61
 =======

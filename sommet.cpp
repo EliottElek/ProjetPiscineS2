@@ -4,6 +4,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 sommet ::sommet (int numero,std:: string color,int x,int y,char id):m_numero{numero},m_color{color},m_x{x},m_y{y},m_id{id}
 =======
 sommet ::sommet (int numero,std:: string color,int x,int y,std::string id)
@@ -14,6 +15,9 @@ sommet ::sommet (int numero,std:: string color,int x,int y,char id)
 =======
 sommet ::sommet (int numero,std:: string color,int x,int y,char id)
 >>>>>>> parent of e92582c... update
+=======
+sommet ::sommet (int numero,std:: string color,int x,int y,char id)
+>>>>>>> parent of 7125b53... dessin encore et encore
 {
     m_numero=numero;
     m_color = color;
@@ -64,7 +68,7 @@ int sommet::gety() const
 {
     return m_y;
 }
-std::string sommet::getid()const
+char sommet::getid()const
 {
     return m_id;
 }
@@ -77,6 +81,4 @@ void sommet::sety (int y)
 {
     m_y=y;
 }
-
-
 

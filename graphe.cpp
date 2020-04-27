@@ -1,7 +1,7 @@
 #include "graphe.h"
 #include "sommet.h"
-#include "svgfile.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -31,8 +31,13 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2)
 {
     sommet* s1;
 >>>>>>> parent of e92582c... update
+=======
+Graphe :: Graphe(std::string nomFichier, std::string nomFichier2)
+{
+    sommet* s1;
+>>>>>>> parent of 7125b53... dessin encore et encore
     int oriente, ordre, numsommet, x, y, taille, idarete, sommet1, sommet2, taille2, idarete2, poids ;
-    std::string idsommet;
+    char idsommet;
     std::istringstream iss;
     std::string strvalues ;
     std::ifstream ifs(nomFichier);  // on ouvre en lecture
@@ -64,6 +69,7 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         //sommet* nouveau = new sommet;
 >>>>>>> 7125b530c4e16f36fe5bd6c9b401b135ec1d5a61
@@ -76,13 +82,16 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2)
 =======
         sommet* nouveau = new sommet;
 >>>>>>> parent of e92582c... update
+=======
+        sommet* nouveau = new sommet;
+>>>>>>> parent of 7125b53... dessin encore et encore
         ifs >> numsommet;
         std::cout << "Num sommet : " << numsommet;
         ifs >> idsommet;
         std::cout << " Idsommet : " << idsommet;
-        id.push_back(idsommet);
         ifs >> x;
         std::cout << " x : " << x;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -94,14 +103,16 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2)
 =======
         sommet.push_back(x);
         //nouveau->setx(x);
+=======
+        nouveau->setx(x);
+>>>>>>> parent of 7125b53... dessin encore et encore
         //s1.x=setx(x);
         ifs >> y ;
         std::cout << " y : " << y << std::endl;
-        sommet.push_back(y);
-        //y = bloc[i].gety();
-        //nouveau->sety(y);
+        nouveau->sety(y);
         //s1->sety(y);
 
+<<<<<<< HEAD
 
         //m_sommets.push_back(nouveau);
         h.addDisk(x*175, y*80,3, "black");
@@ -137,6 +148,9 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2)
 >>>>>>> parent of e92582c... update
 =======
 >>>>>>> parent of e92582c... update
+=======
+        m_sommets.push_back(nouveau);
+>>>>>>> parent of 7125b53... dessin encore et encore
     }
     ifs >> taille;
     std::cout << " Taille :" << taille << std::endl;
@@ -166,20 +180,23 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 void Graphe:: draw(Svgfile& h, int x, int y, int r)
 {
     h.addDisk(x, y,  r, "red");
 =======
 void Graphe:: draw(Svgfile& h)
+=======
+void Graphe:: draw(Svgfile& h, std::vector <sommet*> sommet)
+>>>>>>> parent of 7125b53... dessin encore et encore
 {
-    for (int i=0; i<20; i++)
+    for (int i=0; i<m_ordre; i++)
     {
-        //h.addDisk(20, 20,10, "black");
-        //h.addDisk(bloc[i].x, bloc[i].y, 10, "black");
-
+        h.addDisk((sommet[i]->getx())*10,(sommet[i]->gety())*10,10, "black");
+        h.addDisk(2, 3,10, "black");
     }
-    ///h.addDisk((sommet[0]->getx()),(sommet[0]->gety()),10, "black");
 
+<<<<<<< HEAD
 >>>>>>> 7125b530c4e16f36fe5bd6c9b401b135ec1d5a61
 =======
 void Graphe:: draw(Svgfile& h, std::vector <sommet*> sommet)
@@ -206,4 +223,7 @@ void Graphe:: draw(Svgfile& h, std::vector <sommet*> sommet)
 >>>>>>> parent of e92582c... update
 =======
 >>>>>>> parent of e92582c... update
+=======
+    //h.addLine(3, 30, 300, 300, "red");
+>>>>>>> parent of 7125b53... dessin encore et encore
 }
