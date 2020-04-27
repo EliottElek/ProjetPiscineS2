@@ -1,19 +1,26 @@
 #include <iostream>
-
-using namespace std;
+#include<stdio.h>
+#include <fstream>
+#include <vector>
+#include <fstream>
+#include <sstream>
 
 int main()
 {
-    // j'ai rajouté ce commentaire
-    //bizarre ce truc oui
-    int nombre1 = 0;
-    int chef98;
-    int nombre2 = 0;
-    int nombre3 = 0;
-    cout << "Saisissez le nombre 1 :" << endl;
-    cout << "Saisissez le nombre 2 :" << endl;
-    cout <<"rajout de cette ligne là"<<endl;
-    cin >> nombre1;
-    cin >> nombre2;
+    std::istringstream iss;
+    std::string strvalues ;
+    std::ifstream ifs("fichier1.txt");  // on ouvre en lecture
+    if (!ifs)
+    {
+        throw std::runtime_error {"Impossible d'ouvrir le fichier"};
+    }
+    std::string contenu;
+    getline(ifs, contenu);  // on met dans "contenu" la ligne
+    std::cout << contenu ;   // on affiche la ligne
+    iss.str (contenu);
+    for (i=0; i<20; i++)
+    {
+        ///lecture du fichier 
+    }
     return 0;
 }
