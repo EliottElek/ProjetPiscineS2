@@ -9,12 +9,21 @@
 
 int main()
 {
+<<<<<<< HEAD
     std::vector<sommet*> tabsommet;
     Graphe g{"fichier1.txt", "fichier2.txt",tabsommet};
     Svgfile svgout;
     for(unsigned int i = 0; i < tabsommet.size(); i++)
     //std::cout<<"Sommet"<<i+1<<"x :"<<tabsommet[i]->getx()<<"y :"<<tabsommet[i]->gety()<<std::endl;
         g.draw(svgout, tabsommet[i]->getx()*175, tabsommet[i]->gety()*80, 2);
+=======
+    std::vector <sommet*> sommet;
+
+    Svgfile svgout;
+    Graphe g{"fichier1.txt", "fichier2.txt", svgout};
+    g.draw(svgout);
+
+>>>>>>> 7125b530c4e16f36fe5bd6c9b401b135ec1d5a61
 
     return 0;
 }
