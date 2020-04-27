@@ -18,7 +18,7 @@ private :
 
 public :
     Graphe(std::string nomFichier, std::string nomFichier2);
-    void draw(Svgfile& h);
+    void draw(Svgfile& h, std::vector <sommet*> sommet);
 };
 
 

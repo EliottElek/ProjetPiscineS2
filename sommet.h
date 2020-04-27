@@ -16,11 +16,14 @@ public:
 
     sommet (int numero,std:: string color,int x,int y,char id);
     ~sommet();
+    sommet ();
 
     int getnum ()const;
     int getx ()const;
     int gety() const;
     char getid()const;
+    void setx (int x);
+    void sety(int y);
 
 
 

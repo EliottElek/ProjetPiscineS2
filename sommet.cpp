@@ -8,6 +8,12 @@ sommet ::sommet (int numero,std:: string color,int x,int y,char id)
     m_y = y;
     m_id = id;
 }
+
+sommet :: sommet ()
+{
+
+}
+
 sommet :: ~sommet()
 {
 
@@ -30,3 +36,13 @@ char sommet::getid()const
 {
     return m_id;
 }
+void sommet::setx (int x)
+{
+    m_x=x;
+}
+
+void sommet::sety (int y)
+{
+    m_y=y;
+}
+
