@@ -63,3 +63,8 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2)
 
     }
 }
+
+void Graphe:: draw(Svgfile& h)
+{
+    h.addLine(3, 30, 300, 300, "red");
+}

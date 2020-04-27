@@ -5,6 +5,7 @@
 #include <iostream>
 #include<stdio.h>
 #include <vector>
+#include "svgfile.h"
 
 class Graphe
 {
@@ -12,6 +13,7 @@ private :
 
 public :
     Graphe(std::string nomFichier, std::string nomFichier2);
+    void draw(Svgfile& h);
 };
 
 
