@@ -8,5 +8,8 @@ int main()
     Graphe g{"fichier1.txt", "fichier2.txt"};
     //test
 
+Svgfile svgout;
+    svgout.addLine (3, 3, 300, 300, "red");
+
     return 0;
 }
