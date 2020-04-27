@@ -10,6 +10,7 @@
 int main()
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     std::vector<sommet*> tabsommet;
     Graphe g{"fichier1.txt", "fichier2.txt",tabsommet};
     Svgfile svgout;
@@ -24,6 +25,13 @@ int main()
     g.draw(svgout);
 
 >>>>>>> 7125b530c4e16f36fe5bd6c9b401b135ec1d5a61
+=======
+    std::vector <sommet*> sommet;
+    Graphe g{"fichier1.txt", "fichier2.txt"};
+    Svgfile svgout;
+    g.draw(svgout, sommet);
+
+>>>>>>> parent of e92582c... update
 
     return 0;
 }
