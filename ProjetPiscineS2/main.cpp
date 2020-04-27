@@ -9,6 +9,7 @@
 
 int main()
 {
+    //COMMENTAIRE SUBE
     int oriente, ordre, numsommet, x, y, taille, idarete, sommet1, sommet2, taille2, idarete2, poids ;
     char idsommet;
     std::istringstream iss;
