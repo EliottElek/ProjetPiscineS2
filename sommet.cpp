@@ -2,6 +2,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 sommet ::sommet (int numero,std:: string color,int x,int y,char id):m_numero{numero},m_color{color},m_x{x},m_y{y},m_id{id}
 =======
 sommet ::sommet (int numero,std:: string color,int x,int y,std::string id)
@@ -22,6 +23,22 @@ sommet :: sommet ()
 
 }
 
+=======
+sommet ::sommet (int numero,std:: string color,int x,int y,char id)
+{
+    m_numero=numero;
+    m_color = color;
+    m_x = x;
+    m_y = y;
+    m_id = id;
+}
+
+sommet :: sommet ()
+{
+
+}
+
+>>>>>>> parent of e92582c... update
 sommet :: ~sommet()
 {
 
