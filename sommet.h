@@ -1,6 +1,7 @@
 #ifndef SOMMET_H_INCLUDED
 #define SOMMET_H_INCLUDED
 #include <string>
+#include <vector>
 
 
 class sommet
@@ -11,6 +12,7 @@ private :
     std:: string m_color;
     int m_x,m_y;
     std::string m_id;
+
 
 public:
 
@@ -24,6 +26,8 @@ public:
     std::string getid()const;
     void setx (int x);
     void sety(int y);
+
+
 
 
 

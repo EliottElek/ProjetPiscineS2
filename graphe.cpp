@@ -65,8 +65,9 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2, std::vector<so
         std :: cout << "Poids de l'arete " << idarete2 << " :" ;
         ifs2 >> poids;
         std::cout << poids << std::endl;
-
     }
+    m_taille=taille;
+    m_ordre = ordre;
 }
 
 void Graphe:: drawSommet(Svgfile& h, int x, int y, int r, std::string id)
@@ -78,3 +79,67 @@ void Graphe:: drawArcs(Svgfile& h, int x1, int y1, int x2, int y2)
 {
     h.addLine(x1,y1,x2,y2,"red");
 }
+
+float Graphe::nbdegre (std::vector <arete*>& arete, int numsommet)
+{
+    int nbarete=0;
+    for (int i=0; i<m_taille; i++)
+    {
+        if ((arete[i]->getsommet1()==numsommet)||(arete[i]->getsommet2()==numsommet))
+        {
+            ++nbarete;
+        }
+    }
+    return nbarete;
+}
+
+void Graphe::centraldegrenonnormal (std::vector <arete*>& arete, int numsommet)
+{
+    std::cout << "Indice de centralite de degre non normalise :"<< nbdegre(arete, numsommet)<< std::endl;
+}
+
+void Graphe::centraldegrenormal (std::vector <arete*>& arete, int numsommet)
+{
+    std::cout << "Indice de centralite de degre normalise :"<< (nbdegre(arete, numsommet)/(m_ordre-1));
+}
+
+std::vector <int> Graphe :: getvoisin (std::vector <arete*>& arete, int numsommet)
+{
+    for (int i =0 ; i<m_taille; i++)
+    {
+        if ((arete[i]->getsommet1()==numsommet)&&(arete[i]->getsommet2()!=numsommet))
+        {
+            m_voisins.push_back(arete[i]->getsommet2());
+            std::cout << std::endl << "voisins : " << arete[i]->getsommet2() << std::endl ;
+        }
+
+        if ((arete[i]->getsommet2()==numsommet)&&(arete[i]->getsommet1()!=numsommet))
+        {
+            m_voisins.push_back(arete[i]->getsommet1());
+            std::cout << std::endl << "voisins : " << arete[i]->getsommet1() << std::endl ;
+        }
+    }
+    return m_voisins;
+}
+
+void Graphe ::centralvecteurpropre (std::vector <arete*>& arete, int numsommet)
+{
+    int cvp = 1;
+    std::vector <int> cs;
+
+    for (int i=0; i<m_ordre; i++)
+    {
+
+    }
+
+}
+
+void Graphe::drawPoids(Svgfile& h, int x1, int y1, int x2, int y2, int poids)
+{
+    int xpoids = (x1+x2)/2;
+    int ypoids = (y1+y2)/2;
+    h.addText(xpoids, ypoids, poids, "lightgreen");
+}
+
+
+

@@ -12,6 +12,7 @@ int main()
 {
     std::vector<sommet*> tabsommet;
     std::vector <arete*> tabarete;
+    int numsommet;
     Graphe g{"fichier1.txt", "fichier2.txt",tabsommet, tabarete};
     Svgfile svgout;
     for(unsigned int i = 0; i < tabsommet.size(); i++)
@@ -25,5 +26,11 @@ int main()
         g.drawArcs(svgout, (tabsommet[tabarete[j]->getsommet1()])->getx()*175,(tabsommet[tabarete[j]->getsommet1()])->gety()*80,(tabsommet[tabarete[j]->getsommet2()])->getx()*175,(tabsommet[tabarete[j]->getsommet2()])->gety()*80);
 
     }
+    std::cout << "Quel sommet ? " << std::endl;
+    std::cin >> numsommet ;
+    g.centraldegrenonnormal (tabarete, numsommet);
+    g.centraldegrenormal (tabarete, numsommet);
+    g.getvoisin (tabarete, numsommet);
+
     return 0;
 }

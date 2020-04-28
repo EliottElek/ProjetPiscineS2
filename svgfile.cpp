@@ -170,3 +170,15 @@ std::string Svgfile::makeRGB(int r, int g, int b)
     oss << "rgb(" << r << "," << g << "," << b << ")";
     return oss.str();
 }
+
+void Svgfile::addRectangle(int x1,int y1,int width,int height, std::string color)
+{
+    m_ostrm << "<polygon points=\" "
+            << x1 << "," << y1 << " "
+            << x1+width << "," << y1 << " "
+            << x1+width << "," << y1+height << " "
+            << x1 << "," << y1+height << " "
+            << x1 << "," << y1
+            << "\" style=\"fill:" << color
+            << "\" />\n";
+}

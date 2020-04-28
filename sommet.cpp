@@ -37,3 +37,5 @@ void sommet::sety (int y)
 
 
 
+
+

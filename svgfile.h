@@ -27,6 +27,7 @@ class Svgfile
         void addText(double x, double y, double val, std::string color=defcol);
 
         void addGrid(double span=100.0, bool numbering=true, std::string color="lightgrey");
+        void addRectangle(int x1,int y1,int width,int height, std::string color);
 
         static std::string makeRGB(int r, int g, int b);
 
