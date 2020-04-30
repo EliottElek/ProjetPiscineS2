@@ -29,7 +29,7 @@ public :
     void setFichier1(std::string fichier);
     void setFichier2(std::string fichier);
     void setpondere(int valeur);
-    void Dijkstra(int id_initial,int id_final);
+    int Dijkstra(int id_initial,int id_final);
     float nbdegre (int numsommet);
     float centraldegrenonnormal (int numsommet);
     float centraldegrenormal (int numsommet);

@@ -112,6 +112,21 @@ void Graphe::dessiner()
 {
     Svgfile svgout;
     svgout.addGrid();
+    svgout.addText(750, 65, "En rouge: l'indice de l'arete", "red");
+    svgout.addText(750, 85, "En vert: le poids de l'arete", "lightgreen");
+    svgout.addText(750, 105, "Arbre realise a partir du fichier : ", "black");
+    svgout.addText(750, 125, ">", "black");
+    svgout.addText(760, 125, m_nomFichier, "black");
+    if (m_pondere==true)
+    {
+        svgout.addText(750, 145, "Arbre pondere a partir du fichier : ", "black");
+        svgout.addText(750, 165, ">", "black");
+        svgout.addText(760, 165, m_nomFichier2, "black");
+    }
+    else if (m_pondere==false)
+    {
+        svgout.addText(750, 145, "Arbre non pondere", "black");
+    }
     for (size_t j =0; j<m_aretes.size(); ++j)
     {
         m_aretes[j]->dessiner(svgout);
@@ -124,7 +139,7 @@ void Graphe::dessiner()
         m_sommets[i]->afficher();
     }
 }
-void Graphe::Dijkstra(int id_initial,int id_final)
+int Graphe::Dijkstra(int id_initial,int id_final)
 {
     // Critère de tri & tri
     auto cmp = [](std::pair<sommet*,int>p1, std::pair<sommet*,int>p2)
@@ -183,16 +198,17 @@ void Graphe::Dijkstra(int id_initial,int id_final)
     while(true)
     {
         // On affiche le sommet (et donc le chemin)
-        //std::cout<<road[temp]->getnum();
+        std::cout<<temp;
         if(temp == id_initial)
             break;
         else
-            //std::cout<< " <-- ";
-            temp = road[road[temp]->getnum()]->getnum();
+            std::cout<< " <-- ";
+            temp = road[temp]->getnum();
 
     }
         std::cout<<std::endl;
         std::cout<< "longueur du chemin : " << done[id_final];
+        return done[id_final];
     // Compliqué de retracer la longueur de chaque arête car on a pas la longueur de chaque arête dans done
 }
 
@@ -200,7 +216,7 @@ void Graphe::Dijkstra(int id_initial,int id_final)
 float Graphe::nbdegre (int numsommet)
 {
     int nbarete=0;
-    for (unsigned int i=0; i<m_taille; i++)
+    for (int i=0; i<m_taille; i++)
     {
         if ((m_aretes[i]->getsommet1()->getnum()==numsommet)||(m_aretes[i]->getsommet2()->getnum()==numsommet))
         {
@@ -245,7 +261,7 @@ float Graphe::centraldegrenormal (int numsommet)
 int Graphe :: getnbvoisin (int numsommet)
 {
     int cpt=0;
-    for (int i =0 ; i<m_sommets.size(); i++)
+    for (unsigned int i =0 ; i<m_sommets.size(); i++)
     {
         if (m_sommets[i]->getnum()==numsommet)
         {

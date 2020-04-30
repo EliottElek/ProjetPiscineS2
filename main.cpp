@@ -55,12 +55,10 @@ int main()
             Graphe g(fichierarbre,fichierponderation, ponderation);
             g.setpondere(choixpondere);
             g.dessiner();
-
-
             std::vector <float> c = g.centralvecteurpropre ();
             if(os.is_open())
             {
-                for (int m=0; m<g.gettabsommets().size(); m++)
+                for (unsigned int m=0; m<g.gettabsommets().size(); m++)
                 {
                     float a= g.centraldegrenonnormal (m);
                     float b = g.centraldegrenormal (m);
@@ -114,13 +112,14 @@ int main()
                 case 2:
                 {
                     system("cls");
+                    int poids;
                     int sommetdepart, sommetarrivee;
                     std::cout<<"sommet de depart: ";
                     std::cin>>sommetdepart;
                     std::cout<<std::endl;
                     std::cout<<"sommet d'arrivee: ";
                     std::cin>>sommetarrivee;
-                    g.Dijkstra(sommetdepart,sommetarrivee);
+                    poids=g.Dijkstra(sommetdepart,sommetarrivee);
                     std::cout<<std::endl;
                     system("pause");
                     system("cls");

@@ -11,6 +11,9 @@ void sommet::dessiner(Svgfile&svgout)
 {
     svgout.addDisk(m_x*175, m_y*80,  4, "black");
     svgout.addText(m_x*175, (m_y)*80, m_id, "black");
+    svgout.addText(150,40+m_numero*18,m_id, "black");
+    svgout.addText(163,40+m_numero*18,"-", "black");
+    svgout.addText(170,40+m_numero*18,m_numero, "black");
 }
 std::vector <std::pair<sommet*,int>> sommet::getAdj() const
 {

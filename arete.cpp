@@ -11,6 +11,7 @@ void arete::dessiner(Svgfile&svgout)
     int xpoids = (m_sommet1->getx()*175+m_sommet2->getx()*175)/2;
     int ypoids = (m_sommet1->gety()*80+m_sommet2->gety()*80)/2;
     svgout.addText(xpoids, ypoids, m_poids, "lightgreen");
+    svgout.addText(xpoids, ypoids+20, m_id, "red");
 }
 int arete :: getnum ()const
 {
