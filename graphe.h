@@ -12,26 +12,30 @@
 class Graphe
 {
 private :
-    int m_ordre, m_taille ;
+    int m_ordre, m_taille;
     std::vector <sommet*> m_sommets ;
     std::vector <arete*> m_aretes;
-    std::vector <int> m_voisins ;
+    std::string m_nomFichier;
+    std::string m_nomFichier2;
+    bool m_pondere= false;
 
 public :
-    Graphe (int ordre, int taille);
-    Graphe(std::string nomFichier, std::string nomFichier2, std::vector<sommet*>&sommet, std::vector <arete*>& arete);
-    void drawSommet(Svgfile& h, int x, int y, int r, std::string id);
-    void drawArcs(Svgfile& h, int x1, int y1, int x2, int y2);
-
-    float nbdegre (std::vector <arete*>& arete, int numsommet);
-    void centraldegrenonnormal (std::vector <arete*>& arete, int numsommet);
-    void centraldegrenormal (std::vector <arete*>& arete, int numsommet);
-    void centralvecteurpropre (std::vector <arete*>& arete, int numsommet);
-    std::vector <int> getvoisin(std::vector <arete*>& arete, int numsommet);
-    void drawPoids(Svgfile& h, int x1, int y1, int x2, int y2, int poids);
-
+    Graphe();
+    Graphe(std::string nomFichier, std::string nomFichier2, bool pondere);
+    void dessiner();
+    void supparete(int numero);
+    std::vector <sommet*> gettabsommets() ;
+    std::vector <arete*> gettabaretes();
+    void setFichier1(std::string fichier);
+    void setFichier2(std::string fichier);
+    void setpondere(int valeur);
+    void Dijkstra(int id_initial,int id_final);
+    float nbdegre (int numsommet);
+    float centraldegrenonnormal (int numsommet);
+    float centraldegrenormal (int numsommet);
+    std::vector <float>  centralvecteurpropre ();
+    int getnbvoisin (int numsommet);
 };
 
 
 #endif // GRAPHE_H_INCLUDED
-

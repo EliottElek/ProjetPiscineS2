@@ -1,0 +1,9 @@
+Sommet0 : Indice de CD (non normalise) : 2  Indice de CD (normalise) : 0.25  Indice de CVP : 0.242536
+Sommet1 : Indice de CD (non normalise) : 3  Indice de CD (normalise) : 0.375  Indice de CVP : 0.363803
+Sommet2 : Indice de CD (non normalise) : 3  Indice de CD (normalise) : 0.375  Indice de CVP : 0.363803
+Sommet3 : Indice de CD (non normalise) : 4  Indice de CD (normalise) : 0.5  Indice de CVP : 0.485071
+Sommet4 : Indice de CD (non normalise) : 3  Indice de CD (normalise) : 0.375  Indice de CVP : 0.363803
+Sommet5 : Indice de CD (non normalise) : 2  Indice de CD (normalise) : 0.25  Indice de CVP : 0.242536
+Sommet6 : Indice de CD (non normalise) : 3  Indice de CD (normalise) : 0.375  Indice de CVP : 0.363803
+Sommet7 : Indice de CD (non normalise) : 2  Indice de CD (normalise) : 0.25  Indice de CVP : 0.242536
+Sommet8 : Indice de CD (non normalise) : 2  Indice de CD (normalise) : 0.25  Indice de CVP : 0.242536

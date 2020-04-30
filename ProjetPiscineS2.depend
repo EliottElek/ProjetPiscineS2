@@ -80,12 +80,17 @@
 	<fstream>
 	<set>
 
-1588084742 source:c:\users\cap\projetpiscines2\graphe.cpp
+1588184869 source:c:\users\cap\projetpiscines2\graphe.cpp
 	"graphe.h"
 	"sommet.h"
 	"arete.h"
+	<math.h>
+	<stdlib.h>
+	<iostream>
+	<fstream>
+	<sstream>
 
-1588084742 c:\users\cap\projetpiscines2\graphe.h
+1588184499 c:\users\cap\projetpiscines2\graphe.h
 	<fstream>
 	<sstream>
 	<iostream>
@@ -117,14 +122,14 @@
 	<string>
 	<cstdint>
 
-1588084762 source:c:\users\cap\projetpiscines2\main.cpp
+1588237117 source:c:\users\cap\projetpiscines2\main.cpp
 	"graphe.h"
 	"couleur.h"
 	"svgfile.h"
 	"sommet.h"
 	"arete.h"
 
-1588071429 c:\users\cap\projetpiscines2\sommet.h
+1588246056 c:\users\cap\projetpiscines2\sommet.h
 	<string>
 	<vector>
 

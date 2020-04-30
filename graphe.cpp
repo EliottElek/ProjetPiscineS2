@@ -1,8 +1,12 @@
 #include "graphe.h"
 #include "sommet.h"
 #include "arete.h"
+#include <queue>
+#include <stack>
+#include "math.h"
 
-Graphe :: Graphe(std::string nomFichier, std::string nomFichier2, std::vector<sommet*>&tabsommet, std::vector<arete*>&tabarete)
+Graphe::Graphe() {}
+Graphe :: Graphe(std::string nomFichier, std::string nomFichier2,bool pondere):m_nomFichier{nomFichier}, m_nomFichier2{nomFichier2},m_pondere{pondere}
 {
     std::vector <std::string> id;
     int oriente, ordre, numsommet, x, y, taille, idarete, sommet1, sommet2, taille2, idarete2, poids ;
@@ -10,7 +14,7 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2, std::vector<so
     std::istringstream iss;
     std::string strvalues ;
     std::ifstream ifs(nomFichier);  // on ouvre en lecture
-    std::ifstream ifs2 (nomFichier2);
+    std::ifstream ifs2(nomFichier2);
     if (!ifs)
     {
         throw std::runtime_error {"Impossible d'ouvrir le fichier"};
@@ -21,6 +25,7 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2, std::vector<so
     }
     ifs >> oriente;
     ifs >> ordre;
+    m_ordre = ordre;
     std::cout << "Ouverture des 2 fichiers:" << std::endl ;
     if (oriente ==0)
     {
@@ -42,9 +47,10 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2, std::vector<so
         std::cout << " x : " << x;
         ifs >> y ;
         std::cout << " y : " << y << std::endl;
-        tabsommet.push_back(new sommet(i,"blue",x,y,idsommet));
+        m_sommets.push_back(new sommet(i-2,"blue",x,y,idsommet));
     }
     ifs >> taille;
+    m_taille= taille;
     std::cout << " Taille :" << taille << std::endl;
     for (int j=ordre+4 ; j<ordre+4+taille; j++)
     {
@@ -54,38 +60,149 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2, std::vector<so
         std::cout << " Sommet1 : " << sommet1;
         ifs >> sommet2;
         std::cout << " Sommet2 : " << sommet2 << std::endl;
-        tabarete.push_back(new arete(j,"blue",sommet1,sommet2,idarete, poids));
+        m_aretes.push_back(new arete(j,"blue",m_sommets[sommet1],m_sommets[sommet2],idarete, poids));
+        /*m_sommets[sommet1]->Ajouter_adj(m_sommets[sommet2],1);
+        m_sommets[sommet2]->Ajouter_adj(m_sommets[sommet1],1);*/
     }
 
     ifs2 >> taille2;
     std::cout << std::endl;
-    for (int i=1; i<taille+1; i++)
+    for (int i=1; i<taille2+1; i++)
     {
+        int sommet1;
+        int sommet2;
         ifs2 >> idarete2 ;
         std :: cout << "Poids de l'arete " << idarete2 << " :" ;
         ifs2 >> poids;
+        if (m_pondere==false)poids =1;
         std::cout << poids << std::endl;
+        m_aretes[idarete2]->setpoids(poids);
+        sommet1= m_aretes[idarete2]->getsommet1()->getnum();
+        sommet2= m_aretes[idarete2]->getsommet2()->getnum();
+        m_sommets[sommet1]->Ajouter_adj(m_sommets[sommet2],poids);
+        m_sommets[sommet2]->Ajouter_adj(m_sommets[sommet1],poids);
     }
-    m_taille=taille;
-    m_ordre = ordre;
+}
+void Graphe::setFichier2(std::string fichier)
+{
+    m_nomFichier2 = fichier;
+}
+void Graphe::setFichier1(std::string fichier)
+{
+    m_nomFichier = fichier;
+}
+void Graphe::setpondere(int valeur)
+{
+    if (valeur == 2)m_pondere=false;
+    else m_pondere=true;
+}
+std::vector<sommet*>Graphe::gettabsommets()
+{
+    return m_sommets;
+}
+std::vector <arete*>Graphe::gettabaretes()
+{
+    return m_aretes;
+}
+void Graphe::supparete(int id)
+{
+    m_aretes.erase (m_aretes.begin()+id);
+}
+void Graphe::dessiner()
+{
+    Svgfile svgout;
+    svgout.addGrid();
+    for (size_t j =0; j<m_aretes.size(); ++j)
+    {
+        m_aretes[j]->dessiner(svgout);
+        std::cout<<"Arete entre le sommet "<<m_aretes[j]->getsommet1()->getnum()<<"("<<m_aretes[j]->getsommet1()->getid()<<")"""" et le sommet "<<m_aretes[j]->getsommet2()->getnum()<<"("<<m_aretes[j]->getsommet2()->getid()<<")"<<std::endl;
+    }
+
+    for (size_t i =0; i<m_sommets.size(); ++i)
+    {
+        m_sommets[i]->dessiner(svgout);
+        m_sommets[i]->afficher();
+    }
+}
+void Graphe::Dijkstra(int id_initial,int id_final)
+{
+    // Critère de tri & tri
+    auto cmp = [](std::pair<sommet*,int>p1, std::pair<sommet*,int>p2)
+    {
+        return p2.second<p1.second;
+    };
+    // Priority queue triée en fonction du poids à l'aide du tri ci-dessus
+    std::priority_queue<std::pair<const sommet*,int>, std::vector<std::pair<sommet*,int>>, decltype(cmp)> file(cmp);
+
+    std::vector<int> done (m_ordre,-1);
+    std::vector<sommet*> road (m_ordre,nullptr);
+    int longueur;
+    int dispoarete=0; ///regarde si l'arete choisie est dispo
+    sommet* current;
+
+    // Enfilage et marquage du sommet initial
+    file.push({m_sommets[id_initial],0});
+    done[id_initial] = 0;
+    road[id_initial] = m_sommets[id_initial];
+
+    // Tant qu'il reste des sommets dans la file
+    while(!file.empty())
+    {
+        // Le premier de la priority queue devient le sommet actuel, la longueur est actualisée et il est supprimé de la liste
+        current = file.top().first;
+        longueur = file.top().second;
+        file.pop();
+        // Pour chaque adjacent
+        for(auto i : current->getAdj())
+        {
+            // S'il n'est pas marqué ou s'il est marqué mais que le chemin est plus court
+            if(done[i.first->getnum()] == -1 || (done[i.first->getnum()] != -1 &&  longueur + i.second < done[i.first->getnum()]))
+            {
+                for (unsigned int j=0; j<m_aretes.size(); ++j)
+                {
+                    if ((((m_aretes[j]->getsommet1()->getnum())==(current->getnum()))&&((m_aretes[j]->getsommet2()->getnum())==(i.first->getnum())))||(((m_aretes[j]->getsommet1()->getnum())==(i.first->getnum())&&((m_aretes[j]->getsommet2()->getnum())==(current->getnum())))))
+                    {
+                        // On l'ajoute dans la file, et on met à jour sa distance à l'origine
+                        dispoarete=1;///il y a bien une arete
+                        file.push({i.first,i.second + longueur});
+                        done[i.first->getnum()] = longueur + i.second;
+                        road[i.first->getnum()] = current;
+                    }
+                }
+            }
+        }
+        if (dispoarete == 0)
+        {
+            std::cout<<"le chemin est impossible."<<std::endl;
+        }
+
+    }
+    int temp = id_final;
+    //std::cout<< temp << " <-- ";
+    // Tant qu'on ne revient pas au sommet initial
+    while(true)
+    {
+        // On affiche le sommet (et donc le chemin)
+        //std::cout<<road[temp]->getnum();
+        if(temp == id_initial)
+            break;
+        else
+            //std::cout<< " <-- ";
+            temp = road[road[temp]->getnum()]->getnum();
+
+    }
+        std::cout<<std::endl;
+        std::cout<< "longueur du chemin : " << done[id_final];
+    // Compliqué de retracer la longueur de chaque arête car on a pas la longueur de chaque arête dans done
 }
 
-void Graphe:: drawSommet(Svgfile& h, int x, int y, int r, std::string id)
-{
-    h.addDisk(x, y,  r, "red");
-    h.addText(x, y-10, id, "red");
-}
-void Graphe:: drawArcs(Svgfile& h, int x1, int y1, int x2, int y2)
-{
-    h.addLine(x1,y1,x2,y2,"red");
-}
 
-float Graphe::nbdegre (std::vector <arete*>& arete, int numsommet)
+float Graphe::nbdegre (int numsommet)
 {
     int nbarete=0;
-    for (int i=0; i<m_taille; i++)
+    for (unsigned int i=0; i<m_taille; i++)
     {
-        if ((arete[i]->getsommet1()==numsommet)||(arete[i]->getsommet2()==numsommet))
+        if ((m_aretes[i]->getsommet1()->getnum()==numsommet)||(m_aretes[i]->getsommet2()->getnum()==numsommet))
         {
             ++nbarete;
         }
@@ -93,52 +210,102 @@ float Graphe::nbdegre (std::vector <arete*>& arete, int numsommet)
     return nbarete;
 }
 
-void Graphe::centraldegrenonnormal (std::vector <arete*>& arete, int numsommet)
+float Graphe::centraldegrenonnormal (int numsommet)
 {
-    std::cout << "Indice de centralite de degre non normalise :"<< nbdegre(arete, numsommet)<< std::endl;
+    std::cout << "Indice de centralite de degre non normalise :" << nbdegre(numsommet) << std::endl;
+    return nbdegre(numsommet);
 }
 
-void Graphe::centraldegrenormal (std::vector <arete*>& arete, int numsommet)
+float Graphe::centraldegrenormal (int numsommet)
 {
-    std::cout << "Indice de centralite de degre normalise :"<< (nbdegre(arete, numsommet)/(m_ordre-1));
+    std::cout << "Indice de centralite de degre normalise :" << (nbdegre(numsommet)/(m_ordre-1)) << std::endl;
+    return (nbdegre(numsommet)/(m_ordre-1));
 }
 
-std::vector <int> Graphe :: getvoisin (std::vector <arete*>& arete, int numsommet)
+/*std::vector <int> Graphe :: getvoisin (int numsommet)
 {
+    for (int i=0; i<m_ordre; i++)
+    {
+        m_voisins.push_back(0);
+    }
     for (int i =0 ; i<m_taille; i++)
     {
         if ((arete[i]->getsommet1()==numsommet)&&(arete[i]->getsommet2()!=numsommet))
         {
-            m_voisins.push_back(arete[i]->getsommet2());
-            std::cout << std::endl << "voisins : " << arete[i]->getsommet2() << std::endl ;
+            m_voisins[i] = (arete[i]->getsommet2());
         }
-
-        if ((arete[i]->getsommet2()==numsommet)&&(arete[i]->getsommet1()!=numsommet))
+        else if ((arete[i]->getsommet2()==numsommet)&&(arete[i]->getsommet1()!=numsommet))
         {
-            m_voisins.push_back(arete[i]->getsommet1());
-            std::cout << std::endl << "voisins : " << arete[i]->getsommet1() << std::endl ;
+            m_voisins[i] = (arete[i]->getsommet1());
         }
     }
     return m_voisins;
-}
+}*/
 
-void Graphe ::centralvecteurpropre (std::vector <arete*>& arete, int numsommet)
+int Graphe :: getnbvoisin (int numsommet)
 {
-    int cvp = 1;
-    std::vector <int> cs;
-
-    for (int i=0; i<m_ordre; i++)
+    int cpt=0;
+    for (int i =0 ; i<m_sommets.size(); i++)
     {
-
+        if (m_sommets[i]->getnum()==numsommet)
+        {
+            //m_voisins.push_back(m_arete[i]->getsommet2());
+            cpt=m_sommets[i]->getAdj().size();
+        }
+        /*else if ((m_aretes[i]->getsommet2()==numsommet))//&&(arete[i]->getsommet1()!=numsommet))
+        {
+            //m_voisins.push_back(arete[i]->getsommet1());
+            cpt=m_aretes[i].getAdj().size();
+        }*/
     }
-
+    return cpt;
 }
 
-void Graphe::drawPoids(Svgfile& h, int x1, int y1, int x2, int y2, int poids)
+
+std::vector <float> Graphe :: centralvecteurpropre ()
 {
-    int xpoids = (x1+x2)/2;
-    int ypoids = (y1+y2)/2;
-    h.addText(xpoids, ypoids, poids, "lightgreen");
+    std::vector <float> Cvp ;
+    std::vector <float> Csi  ;
+    std::vector <float> lambda ;
+    int k=0;
+
+    for (int j=0; j<m_ordre; j++)
+    {
+        Cvp.push_back(1);
+        Csi.push_back(0);
+    }
+    for (int l=0; l<100; l++)
+    {
+        lambda.push_back(0);
+    }
+        do {
+
+            lambda[k] = 0;
+            for (int i=0; i<m_ordre; i++)
+            {
+                Csi[i] = 0;
+
+                for (int j=0; j<getnbvoisin(i); j++)
+                {
+                    Csi[i] = Csi[i]+Cvp[m_sommets[i]->getAdj()[j].first->getnum()];
+                }
+                lambda[k] = lambda[k]+(Csi[i]*Csi[i]);
+            }
+            lambda[k] = sqrt(lambda[k]) ;
+
+            for (int j=0; j<m_ordre; j++)
+            {
+                Cvp[j]=(Csi[j]/lambda[k]);
+            }
+            ++k;
+        }while (((lambda[k-2]-lambda[k-1])>0.01)||(lambda[k-2]-lambda[k-1])<-0.01);
+        for (int i = 0; i<m_ordre ; i++)
+        {
+            std::cout << "Pour lambda = " << lambda[k-1] << " CV[p] vaut : " << Cvp[i] << std::endl;
+        }
+
+
+    return Cvp;
 }
 
 

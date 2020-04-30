@@ -58,7 +58,17 @@ std::string attrib(std::string name, T val)
     oss << name << "=\"" << val << "\" ";
     return oss.str();
 }
-
+void Svgfile::addRectangle(int x1,int y1,int width,int height, std::string color)
+{
+    m_ostrm << "<polygon points=\" "
+            << x1 << "," << y1 << " "
+            << x1+width << "," << y1 << " "
+            << x1+width << "," << y1+height << " "
+            << x1 << "," << y1+height << " "
+            << x1 << "," << y1
+            << "\" style=\"fill:" << color
+            << "\" />\n";
+}
 void Svgfile::addDisk(double x, double y, double r, std::string color)
 {
     m_ostrm << "<circle "
@@ -171,14 +181,6 @@ std::string Svgfile::makeRGB(int r, int g, int b)
     return oss.str();
 }
 
-void Svgfile::addRectangle(int x1,int y1,int width,int height, std::string color)
-{
-    m_ostrm << "<polygon points=\" "
-            << x1 << "," << y1 << " "
-            << x1+width << "," << y1 << " "
-            << x1+width << "," << y1+height << " "
-            << x1 << "," << y1+height << " "
-            << x1 << "," << y1
-            << "\" style=\"fill:" << color
-            << "\" />\n";
-}
+
+
+
