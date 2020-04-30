@@ -35,6 +35,8 @@ public :
     float centraldegrenormal (int numsommet);
     std::vector <float>  centralvecteurpropre ();
     int getnbvoisin (int numsommet);
+    float centraldeproximitenonnormalise(int numsommet);
+    float centraldeproximitenormalise(int numsommet);
 };
 
 

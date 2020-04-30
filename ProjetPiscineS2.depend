@@ -22,25 +22,39 @@
 1587995485 source:c:\users\subes\projet-piscine\projetpiscine\projetpiscines2\projetpiscines2\graphe.cpp
 	"graphe.h"
 
-1587996332 source:c:\users\subes\projetpiscines2\graphe.cpp
+1588260885 source:c:\users\subes\projetpiscines2\graphe.cpp
 	"graphe.h"
+	"sommet.h"
+	"arete.h"
+	<queue>
+	<stack>
+	"math.h"
 
-1587996332 c:\users\subes\projetpiscines2\graphe.h
+1588260885 c:\users\subes\projetpiscines2\graphe.h
 	<fstream>
 	<sstream>
 	<iostream>
 	<stdio.h>
 	<vector>
+	"svgfile.h"
+	"sommet.h"
+	"arete.h"
 
-1587996332 source:c:\users\subes\projetpiscines2\main.cpp
+1588259997 source:c:\users\subes\projetpiscines2\main.cpp
 	"graphe.h"
+	"couleur.h"
+	"svgfile.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+	<math.h>
 
-1587996332 source:c:\users\subes\projetpiscines2\svgfile.cpp
+1588258299 source:c:\users\subes\projetpiscines2\svgfile.cpp
 	"svgfile.h"
 	<iostream>
 	<sstream>
 
-1587996332 c:\users\subes\projetpiscines2\svgfile.h
+1588258299 c:\users\subes\projetpiscines2\svgfile.h
 	<string>
 	<fstream>
 	<set>
@@ -172,4 +186,36 @@
 	<string>
 	"svgfile.h"
 	<vector>
+
+1588258299 source:c:\users\subes\projetpiscines2\arete.cpp
+	"arete.h"
+	"sommet.h"
+	"svgfile.h"
+
+1588258299 c:\users\subes\projetpiscines2\arete.h
+	<string>
+	"sommet.h"
+	"svgfile.h"
+
+1588258299 c:\users\subes\projetpiscines2\sommet.h
+	<string>
+	"svgfile.h"
+	<vector>
+
+1587997522 source:c:\users\subes\projetpiscines2\couleur.cpp
+	"couleur.h"
+	"svgfile.h"
+	<iostream>
+
+1588258299 c:\users\subes\projetpiscines2\couleur.h
+	<string>
+	<cstdint>
+
+1588258299 source:c:\users\subes\projetpiscines2\sommet.cpp
+	"graphe.h"
+	"couleur.h"
+	"svgfile.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
 

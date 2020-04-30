@@ -62,11 +62,16 @@ int main()
                 {
                     float a= g.centraldegrenonnormal (m);
                     float b = g.centraldegrenormal (m);
+                    float d= g.centraldeproximitenonnormalise(m);
+                    float e= g.centraldeproximitenormalise(m);
                     os << "Sommet" << m << " : Indice de CD (non normalise) : "<< a ;
                     os << "  Indice de CD (normalise) : "<< b ;
-                    os << "  Indice de CVP : " << c[m] << std::endl;
+                    os << "  Indice de CVP : " << c[m];
+                    os << " Indice de CP (non normalise) : "<< d;
+                    os << " Indice de CP (normalise) : "<< e<< std::endl;
                 }
             }
+
 
             system("pause");
             system("cls");
@@ -104,7 +109,7 @@ int main()
                         }
 
                     }
-                    //while ((g.gettabaretes().size()!=0)||(idarete!=20));
+
                     system("pause");
                     system("cls");
                 }

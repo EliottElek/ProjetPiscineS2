@@ -74,7 +74,8 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2,bool pondere):m
         ifs2 >> idarete2 ;
         std :: cout << "Poids de l'arete " << idarete2 << " :" ;
         ifs2 >> poids;
-        if (m_pondere==false)poids =1;
+        if (m_pondere==false)
+            poids =1;
         std::cout << poids << std::endl;
         m_aretes[idarete2]->setpoids(poids);
         sommet1= m_aretes[idarete2]->getsommet1()->getnum();
@@ -93,8 +94,10 @@ void Graphe::setFichier1(std::string fichier)
 }
 void Graphe::setpondere(int valeur)
 {
-    if (valeur == 2)m_pondere=false;
-    else m_pondere=true;
+    if (valeur == 2)
+        m_pondere=false;
+    else
+        m_pondere=true;
 }
 std::vector<sommet*>Graphe::gettabsommets()
 {
@@ -198,17 +201,17 @@ int Graphe::Dijkstra(int id_initial,int id_final)
     while(true)
     {
         // On affiche le sommet (et donc le chemin)
-        std::cout<<temp;
+//        std::cout<<temp;
         if(temp == id_initial)
             break;
         else
-            std::cout<< " <-- ";
+//            std::cout<< " <-- ";
             temp = road[temp]->getnum();
 
     }
-        std::cout<<std::endl;
-        std::cout<< "longueur du chemin : " << done[id_final];
-        return done[id_final];
+//        std::cout<<std::endl;
+//        std::cout<< "longueur du chemin : " << done[id_final];
+    return done[id_final];
     // Compliqué de retracer la longueur de chaque arête car on a pas la longueur de chaque arête dans done
 }
 
@@ -238,25 +241,42 @@ float Graphe::centraldegrenormal (int numsommet)
     return (nbdegre(numsommet)/(m_ordre-1));
 }
 
-/*std::vector <int> Graphe :: getvoisin (int numsommet)
+float Graphe :: centraldeproximitenonnormalise(int numsommet)
 {
+    float poids=0;
+    float invpoids=0;
     for (int i=0; i<m_ordre; i++)
     {
-        m_voisins.push_back(0);
+        poids+=Dijkstra(numsommet,i);
+        invpoids=1/poids;
+
     }
-    for (int i =0 ; i<m_taille; i++)
+
+    std::cout<< "Indice de centralite de proximite non normalise : " << invpoids<< std::endl;
+
+    return invpoids;
+
+}
+
+float Graphe :: centraldeproximitenormalise(int numsommet)
+{
+    float poids=0;
+    float invpoids=0;
+    for (int i=0; i<m_ordre; i++)
     {
-        if ((arete[i]->getsommet1()==numsommet)&&(arete[i]->getsommet2()!=numsommet))
-        {
-            m_voisins[i] = (arete[i]->getsommet2());
-        }
-        else if ((arete[i]->getsommet2()==numsommet)&&(arete[i]->getsommet1()!=numsommet))
-        {
-            m_voisins[i] = (arete[i]->getsommet1());
-        }
+        poids+=Dijkstra(numsommet,i);
+        invpoids=(m_ordre-1)/poids;
+
     }
-    return m_voisins;
-}*/
+
+    std::cout<< "Indice de centralite de proximite normalise : " << invpoids<< std::endl;
+
+    return invpoids;
+
+}
+
+
+
 
 int Graphe :: getnbvoisin (int numsommet)
 {
@@ -294,31 +314,33 @@ std::vector <float> Graphe :: centralvecteurpropre ()
     {
         lambda.push_back(0);
     }
-        do {
+    do
+    {
 
-            lambda[k] = 0;
-            for (int i=0; i<m_ordre; i++)
-            {
-                Csi[i] = 0;
-
-                for (int j=0; j<getnbvoisin(i); j++)
-                {
-                    Csi[i] = Csi[i]+Cvp[m_sommets[i]->getAdj()[j].first->getnum()];
-                }
-                lambda[k] = lambda[k]+(Csi[i]*Csi[i]);
-            }
-            lambda[k] = sqrt(lambda[k]) ;
-
-            for (int j=0; j<m_ordre; j++)
-            {
-                Cvp[j]=(Csi[j]/lambda[k]);
-            }
-            ++k;
-        }while (((lambda[k-2]-lambda[k-1])>0.01)||(lambda[k-2]-lambda[k-1])<-0.01);
-        for (int i = 0; i<m_ordre ; i++)
+        lambda[k] = 0;
+        for (int i=0; i<m_ordre; i++)
         {
-            std::cout << "Pour lambda = " << lambda[k-1] << " CV[p] vaut : " << Cvp[i] << std::endl;
+            Csi[i] = 0;
+
+            for (int j=0; j<getnbvoisin(i); j++)
+            {
+                Csi[i] = Csi[i]+Cvp[m_sommets[i]->getAdj()[j].first->getnum()];
+            }
+            lambda[k] = lambda[k]+(Csi[i]*Csi[i]);
         }
+        lambda[k] = sqrt(lambda[k]) ;
+
+        for (int j=0; j<m_ordre; j++)
+        {
+            Cvp[j]=(Csi[j]/lambda[k]);
+        }
+        ++k;
+    }
+    while (((lambda[k-2]-lambda[k-1])>0.01)||(lambda[k-2]-lambda[k-1])<-0.01);
+    for (int i = 0; i<m_ordre ; i++)
+    {
+        std::cout << "Pour lambda = " << lambda[k-1] << " CV[p] vaut : " << Cvp[i] << std::endl;
+    }
 
 
     return Cvp;
