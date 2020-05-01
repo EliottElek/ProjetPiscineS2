@@ -46,45 +46,31 @@
 <text x="750" y="105" fill="black" >Arbre realise a partir du fichier : </text>
 <text x="750" y="125" fill="black" >></text>
 <text x="760" y="125" fill="black" >fichier1.txt</text>
-<text x="750" y="145" fill="black" >Arbre pondere a partir du fichier : </text>
-<text x="750" y="165" fill="black" >></text>
-<text x="760" y="165" fill="black" >fichier2.txt</text>
+<text x="750" y="145" fill="black" >Arbre non pondere</text>
 <line x1="525" y1="80" x2="350" y2="160" stroke="blue" />
-<text x="437" y="120" fill="lightgreen" >2</text>
+<text x="437" y="120" fill="lightgreen" >1</text>
 <text x="437" y="140" fill="red" >0</text>
 <line x1="525" y1="80" x2="700" y2="160" stroke="blue" />
-<text x="612" y="120" fill="lightgreen" >3</text>
+<text x="612" y="120" fill="lightgreen" >1</text>
 <text x="612" y="140" fill="red" >1</text>
-<line x1="350" y1="160" x2="525" y2="240" stroke="blue" />
-<text x="437" y="200" fill="lightgreen" >2</text>
-<text x="437" y="220" fill="red" >2</text>
-<line x1="700" y1="160" x2="525" y2="240" stroke="blue" />
-<text x="612" y="200" fill="lightgreen" >4</text>
-<text x="612" y="220" fill="red" >3</text>
 <line x1="525" y1="240" x2="350" y2="320" stroke="blue" />
-<text x="437" y="280" fill="lightgreen" >7</text>
+<text x="437" y="280" fill="lightgreen" >1</text>
 <text x="437" y="300" fill="red" >4</text>
 <line x1="525" y1="240" x2="700" y2="320" stroke="blue" />
-<text x="612" y="280" fill="lightgreen" >2</text>
+<text x="612" y="280" fill="lightgreen" >1</text>
 <text x="612" y="300" fill="red" >5</text>
 <line x1="350" y1="160" x2="175" y2="400" stroke="blue" />
-<text x="262" y="280" fill="lightgreen" >4</text>
+<text x="262" y="280" fill="lightgreen" >1</text>
 <text x="262" y="300" fill="red" >6</text>
 <line x1="700" y1="160" x2="875" y2="400" stroke="blue" />
-<text x="787" y="280" fill="lightgreen" >6</text>
+<text x="787" y="280" fill="lightgreen" >1</text>
 <text x="787" y="300" fill="red" >7</text>
 <line x1="350" y1="320" x2="525" y2="320" stroke="blue" />
-<text x="437" y="320" fill="lightgreen" >7</text>
+<text x="437" y="320" fill="lightgreen" >1</text>
 <text x="437" y="340" fill="red" >8</text>
 <line x1="525" y1="320" x2="700" y2="320" stroke="blue" />
 <text x="612" y="320" fill="lightgreen" >1</text>
 <text x="612" y="340" fill="red" >9</text>
-<line x1="700" y1="320" x2="875" y2="400" stroke="blue" />
-<text x="787" y="360" fill="lightgreen" >3</text>
-<text x="787" y="380" fill="red" >10</text>
-<line x1="350" y1="320" x2="175" y2="400" stroke="blue" />
-<text x="262" y="360" fill="lightgreen" >5</text>
-<text x="262" y="380" fill="red" >11</text>
 <circle cx="525" cy="80" r="4" fill="black" />
 <text x="525" y="80" fill="black" >A</text>
 <text x="150" y="40" fill="black" >A</text>
@@ -130,6 +116,7 @@
 <text x="150" y="184" fill="black" >I</text>
 <text x="163" y="184" fill="black" >-</text>
 <text x="170" y="184" fill="black" >8</text>
+<text x="235" y="65" fill="red" >Cet arbre n'est pas connexe</text>
 
 
 </svg>

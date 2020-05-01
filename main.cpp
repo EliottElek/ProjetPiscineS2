@@ -81,7 +81,8 @@ int main()
                 std::cout<<"Vous avez charge un arbre. Quel voulez-vous faire ?"<<std::endl;
                 std::cout<<"1.Supprimer des aretes"<<std::endl;
                 std::cout<<"2.Dikjstra d'un sommet a un autre"<<std::endl;
-                std::cout<<"3.Quitter"<<std::endl;
+                std::cout<<"3.BFS"<<std::endl;
+                std::cout<<"4.Retour"<<std::endl;
                 std::cout<<"choix : ";
                 std::cin>>choix2;
                 switch (choix2)
@@ -96,20 +97,8 @@ int main()
                     std::cout<<std::endl;
                     std::cout <<"quelle arete faut-il supprimer ?";
                     std::cin>>idarete;
-                    if((idarete>=0))
-                    {
-                        for (unsigned int i=0; i<g.gettabaretes().size(); ++i)
-                        {
-                            if (idarete==(g.gettabaretes()[i]->getid()))
-                            {
-                                g.supparete(i);
-                                g.dessiner();
-                            }
-
-                        }
-
-                    }
-
+                    g.supparete(idarete);
+                    g.dessiner();
                     system("pause");
                     system("cls");
                 }
@@ -132,6 +121,41 @@ int main()
                 }
                 break;
                 case 3:
+                {
+                    int connexe=1;
+                    system("cls");
+                    std::vector<unsigned int>vec;///vecteur regroupant l'ensemble du nombre de chemins possibles à partir de tous les sommets
+                    for (size_t i=0; i<g.gettabsommets().size(); ++i)
+                    {
+                        std::vector<int>vecteur = g.BFS(g.gettabsommets()[i]->getnum());
+                        std::cout<<"nombre de sommets accessibles depuis: "<<g.gettabsommets()[i]->getid()<<" : "<<vecteur.size()<<" sommets accessibles."<<std::endl;
+                        vec.push_back(vecteur.size());
+                        for (size_t j=0; j<vecteur.size(); ++j)
+                            vecteur.erase(vecteur.begin()+j);
+                    }
+                    std::cout<<std::endl;
+                    for (unsigned int j=0; j<vec.size(); ++j)
+                    {
+                        if (vec[j]!=(g.gettabsommets().size()))
+                        {
+                            connexe=0;
+                            break;
+                        }
+
+                    }
+                    if (connexe==1)
+                        std::cout<<"l'arbre est connexe."<<std::endl;
+                    else
+                        std::cout<<"l'arbre n'est pas connexe ta maman."<<std::endl;
+                    g.setconnexite(connexe);
+                    g.dessiner();
+                    std::cout<<std::endl;
+                    system("pause");
+                    system("cls");
+
+                }
+                break;
+                case 4:
                 {
                     retour = 1;
                     system("cls");

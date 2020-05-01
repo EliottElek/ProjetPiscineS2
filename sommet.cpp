@@ -54,7 +54,11 @@ void sommet::Ajouter_adj(sommet* adj,int poids)
 }
 void sommet::Supprimer_adj(sommet*adj)
 {
-    m_adjacents.erase(m_adjacents.begin()+adj->getnum());
+    for (unsigned int i=0;i<m_adjacents.size();i++)
+    {
+    if (m_adjacents[i].first->getid()==adj->getid())
+    m_adjacents.erase(m_adjacents.begin()+i);
+    }
 }
 void sommet::ajouterPoidsadjacents( std::pair<sommet*,int> temp, int poids)
 {
@@ -62,12 +66,19 @@ void sommet::ajouterPoidsadjacents( std::pair<sommet*,int> temp, int poids)
 }
 void sommet::afficher()
 {
-    std::cout<<"sommet "<<m_id<<": ";
+    /*std::cout<<"sommet "<<m_id<<": ";
     for(size_t i=0; i< m_adjacents.size(); ++i)
     {
         std::cout<<m_adjacents[i].first->m_id<< " p="<<m_adjacents[i].second;
         if(i < m_adjacents.size()-1)
             std::cout<< ", ";
     }
+    std::cout<<std::endl;*/
+    std::cout<<"les voisins de "<<m_id<<" sont :";
+    for(size_t i=0; i< m_adjacents.size(); ++i)
+    {
+        std::cout<<"-"<<m_adjacents[i].first->getid();
+    }
+
     std::cout<<std::endl;
 }

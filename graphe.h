@@ -18,17 +18,22 @@ private :
     std::string m_nomFichier;
     std::string m_nomFichier2;
     bool m_pondere= false;
+    int m_orientation;
+    bool m_connexite = true;
 
 public :
     Graphe();
     Graphe(std::string nomFichier, std::string nomFichier2, bool pondere);
     void dessiner();
     void supparete(int numero);
+    int getordre();
+    void setconnexite(int valeur);
     std::vector <sommet*> gettabsommets() ;
     std::vector <arete*> gettabaretes();
     void setFichier1(std::string fichier);
     void setFichier2(std::string fichier);
     void setpondere(int valeur);
+    std::vector<int>BFS(int id_initial);
     int Dijkstra(int id_initial,int id_final);
     float nbdegre (int numsommet);
     float centraldegrenonnormal (int numsommet);

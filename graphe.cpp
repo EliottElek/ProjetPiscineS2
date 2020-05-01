@@ -24,6 +24,7 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2,bool pondere):m
         throw std::runtime_error {"Impossible d'ouvrir le fichier"};
     }
     ifs >> oriente;
+    m_orientation=oriente;
     ifs >> ordre;
     m_ordre = ordre;
     std::cout << "Ouverture des 2 fichiers:" << std::endl ;
@@ -60,7 +61,7 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2,bool pondere):m
         std::cout << " Sommet1 : " << sommet1;
         ifs >> sommet2;
         std::cout << " Sommet2 : " << sommet2 << std::endl;
-        m_aretes.push_back(new arete(j,"blue",m_sommets[sommet1],m_sommets[sommet2],idarete, poids));
+        m_aretes.push_back(new arete(idarete,"blue",m_sommets[sommet1],m_sommets[sommet2],idarete, poids));
         /*m_sommets[sommet1]->Ajouter_adj(m_sommets[sommet2],1);
         m_sommets[sommet2]->Ajouter_adj(m_sommets[sommet1],1);*/
     }
@@ -83,6 +84,10 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2,bool pondere):m
         m_sommets[sommet1]->Ajouter_adj(m_sommets[sommet2],poids);
         m_sommets[sommet2]->Ajouter_adj(m_sommets[sommet1],poids);
     }
+}
+int Graphe::getordre()
+{
+    return m_ordre;
 }
 void Graphe::setFichier2(std::string fichier)
 {
@@ -107,9 +112,27 @@ std::vector <arete*>Graphe::gettabaretes()
 {
     return m_aretes;
 }
+void Graphe::setconnexite(int valeur)
+{
+    if (valeur==1)m_connexite=true;
+    else m_connexite = false;
+}
 void Graphe::supparete(int id)
 {
-    m_aretes.erase (m_aretes.begin()+id);
+    for (size_t i=0; i<m_aretes.size(); ++i)
+        //{
+        if (m_aretes[i]->getid()==id)
+        {
+            sommet*sommet1=m_aretes[i]->getsommet1();
+            sommet*sommet2=m_aretes[i]->getsommet2();
+            sommet1->Supprimer_adj(sommet2);
+            if (m_orientation==0)
+                sommet2->Supprimer_adj(sommet1);
+            delete(m_aretes[i]);
+            m_aretes.erase (m_aretes.begin()+i);
+            m_taille=m_taille-1;
+            break;
+        }
 }
 void Graphe::dessiner()
 {
@@ -141,15 +164,24 @@ void Graphe::dessiner()
         m_sommets[i]->dessiner(svgout);
         m_sommets[i]->afficher();
     }
+    if (m_connexite==true)
+    {
+        svgout.addText(235, 65, "Cet arbre est connexe", "blue");
+    }
+    else if (m_connexite==false)
+    {
+        svgout.addText(235, 65, "Cet arbre n'est pas connexe", "red");
+    }
 }
+
 int Graphe::Dijkstra(int id_initial,int id_final)
 {
-    // Critère de tri & tri
+    // Critï¿½re de tri & tri
     auto cmp = [](std::pair<sommet*,int>p1, std::pair<sommet*,int>p2)
     {
         return p2.second<p1.second;
     };
-    // Priority queue triée en fonction du poids à l'aide du tri ci-dessus
+    // Priority queue triï¿½e en fonction du poids ï¿½ l'aide du tri ci-dessus
     std::priority_queue<std::pair<const sommet*,int>, std::vector<std::pair<sommet*,int>>, decltype(cmp)> file(cmp);
 
     std::vector<int> done (m_ordre,-1);
@@ -166,21 +198,21 @@ int Graphe::Dijkstra(int id_initial,int id_final)
     // Tant qu'il reste des sommets dans la file
     while(!file.empty())
     {
-        // Le premier de la priority queue devient le sommet actuel, la longueur est actualisée et il est supprimé de la liste
+        // Le premier de la priority queue devient le sommet actuel, la longueur est actualisï¿½e et il est supprimï¿½ de la liste
         current = file.top().first;
         longueur = file.top().second;
         file.pop();
         // Pour chaque adjacent
         for(auto i : current->getAdj())
         {
-            // S'il n'est pas marqué ou s'il est marqué mais que le chemin est plus court
+            // S'il n'est pas marquï¿½ ou s'il est marquï¿½ mais que le chemin est plus court
             if(done[i.first->getnum()] == -1 || (done[i.first->getnum()] != -1 &&  longueur + i.second < done[i.first->getnum()]))
             {
                 for (unsigned int j=0; j<m_aretes.size(); ++j)
                 {
                     if ((((m_aretes[j]->getsommet1()->getnum())==(current->getnum()))&&((m_aretes[j]->getsommet2()->getnum())==(i.first->getnum())))||(((m_aretes[j]->getsommet1()->getnum())==(i.first->getnum())&&((m_aretes[j]->getsommet2()->getnum())==(current->getnum())))))
                     {
-                        // On l'ajoute dans la file, et on met à jour sa distance à l'origine
+                        // On l'ajoute dans la file, et on met ï¿½ jour sa distance ï¿½ l'origine
                         dispoarete=1;///il y a bien une arete
                         file.push({i.first,i.second + longueur});
                         done[i.first->getnum()] = longueur + i.second;
@@ -212,9 +244,74 @@ int Graphe::Dijkstra(int id_initial,int id_final)
 //        std::cout<<std::endl;
 //        std::cout<< "longueur du chemin : " << done[id_final];
     return done[id_final];
-    // Compliqué de retracer la longueur de chaque arête car on a pas la longueur de chaque arête dans done
+    // Compliquï¿½ de retracer la longueur de chaque arï¿½te car on a pas la longueur de chaque arï¿½te dans done
 }
+std::vector<int> Graphe::BFS(int id_initial)
+{
+    std::vector<int> l_preds;
+    std::queue<int> file;
+    std::queue<int> copie;
+    std::vector<int> done;
+    bool temp =0;
 
+    // Creation de liste vide, puis enfilage et marquage de So
+    file.push(id_initial);
+    done.push_back(id_initial);
+
+
+    // Tant qu'il reste des sommets dans la file
+    while(file.size()!=0)
+    {
+        //std::cout<<std::endl;
+        // Le sommet actuel est remplacÃ© par le premier de la file
+        id_initial = file.front();
+        l_preds.push_back(id_initial);
+
+        file.pop();
+        // Pour le nombre de sommets adjacents au sommet actuel
+        for(size_t i=0; i<m_sommets[id_initial]->getAdj().size(); ++i)
+        {
+            // Pour le nombre de sommets marquÃ©s
+            for(size_t k=0; k<done.size(); ++k)
+            {
+                // Si les sommets adjacents sont marquÃ©s
+                if(m_sommets[id_initial]->getAdj()[i].first->getnum() == done[k])
+                {
+                    // On s'arrÃªte lÃ 
+                    temp=1;
+                    break;
+                }
+                else
+                {
+                    temp=0;
+                }
+            }
+            // Sinon
+            if(temp==0)
+            {
+                // On enfile et on marque le sommet
+                file.push(m_sommets[id_initial]->getAdj()[i].first->getnum() );
+                done.push_back(m_sommets[id_initial]->getAdj()[i].first->getnum() );
+            }
+        }
+/*
+        copie=file;
+        // Tant que la copie de la file n'est pas vide
+        while(!copie.empty())
+        {
+            // On affiche le premier Ã©lement
+            std::cout<<copie.front();
+            // Si ce n'est pas le dernier
+            if(copie.size()!=1)
+            {
+            std::cout << " <-- ";
+            }
+            // On passe au suivant
+            copie.pop();
+        }*/
+    }
+    return l_preds;
+}
 
 float Graphe::nbdegre (int numsommet)
 {
@@ -285,14 +382,8 @@ int Graphe :: getnbvoisin (int numsommet)
     {
         if (m_sommets[i]->getnum()==numsommet)
         {
-            //m_voisins.push_back(m_arete[i]->getsommet2());
             cpt=m_sommets[i]->getAdj().size();
         }
-        /*else if ((m_aretes[i]->getsommet2()==numsommet))//&&(arete[i]->getsommet1()!=numsommet))
-        {
-            //m_voisins.push_back(arete[i]->getsommet1());
-            cpt=m_aretes[i].getAdj().size();
-        }*/
     }
     return cpt;
 }
