@@ -246,6 +246,119 @@ int Graphe::Dijkstra(int id_initial,int id_final)
     return done[id_final];
     // Compliqu� de retracer la longueur de chaque ar�te car on a pas la longueur de chaque ar�te dans done
 }
+
+std::vector <int> Graphe::Dijkstra2(int id_initial,int id_final)
+{
+    // Critère de tri & tri
+    auto cmp = [](std::pair<sommet*,int>p1, std::pair<sommet*,int>p2)
+    {
+        return p2.second<p1.second;
+    };
+    // Priority queue triée en fonction du poids à l'aide du tri ci-dessus
+    std::priority_queue<std::pair<const sommet*,int>, std::vector<std::pair<sommet*,int>>, decltype(cmp)> file(cmp);
+
+    std::vector<int> done (m_ordre,-1);
+    std::vector<sommet*> road (m_ordre,nullptr);
+    int longueur;
+    int dispoarete=0; ///regarde si l'arete choisie est dispo
+    sommet* current;
+
+    // Enfilage et marquage du sommet initial
+    file.push({m_sommets[id_initial],0});
+    done[id_initial] = 0;
+    road[id_initial] = m_sommets[id_initial];
+
+    // Tant qu'il reste des sommets dans la file
+    while(!file.empty())
+    {
+        // Le premier de la priority queue devient le sommet actuel, la longueur est actualisée et il est supprimé de la liste
+        current = file.top().first;
+        longueur = file.top().second;
+        file.pop();
+        // Pour chaque adjacent
+        for(auto i : current->getAdj())
+        {
+            // S'il n'est pas marqué ou s'il est marqué mais que le chemin est plus court
+            if(done[i.first->getnum()] == -1 || (done[i.first->getnum()] != -1 &&  longueur + i.second < done[i.first->getnum()]))
+            {
+                for (unsigned int j=0; j<m_aretes.size(); ++j)
+                {
+                    if ((((m_aretes[j]->getsommet1()->getnum())==(current->getnum()))&&((m_aretes[j]->getsommet2()->getnum())==(i.first->getnum())))||(((m_aretes[j]->getsommet1()->getnum())==(i.first->getnum())&&((m_aretes[j]->getsommet2()->getnum())==(current->getnum())))))
+                    {
+                        // On l'ajoute dans la file, et on met à jour sa distance à l'origine
+                        dispoarete=1;///il y a bien une arete
+                        file.push({i.first,i.second + longueur});
+                        done[i.first->getnum()] = longueur + i.second;
+                        road[i.first->getnum()] = current;
+                    }
+                }
+            }
+        }
+        if (dispoarete == 0)
+        {
+            std::cout<<"le chemin est impossible."<<std::endl;
+        }
+    }
+    int temp = id_final;
+    std::vector <int> liste ;
+    liste.push_back(id_final);
+
+    //std::cout<< temp << " <-- ";
+    // Tant qu'on ne revient pas au sommet initial
+    while(true)
+    {
+        // On affiche le sommet (et donc le chemin)
+//        std::cout<<temp;
+        if(temp == id_initial)
+            break;
+        else
+        {
+//            std::cout<< " <-- ";
+            temp = road[temp]->getnum();
+            liste.push_back(temp) ;
+        }
+    }
+//        std::cout<<std::endl;
+//        std::cout<< "longueur du chemin : " << done[id_final];
+    return liste;
+    // Compliqué de retracer la longueur de chaque arête car on a pas la longueur de chaque arête dans done
+}
+
+float Graphe :: centraliteintermediaritenonnormalise (int numsommet)
+{
+    std::vector <float> recip ;
+    int k=0;
+    float cpt = 0;
+
+    for (int s=0 ; s<40 ; s++)
+    {
+        for (int i=0; i<m_ordre-1-k; i++)
+        {
+            recip.push_back(0);
+            if (i!=numsommet)
+            {
+                if (i+k+1!=numsommet)
+                {
+                    for (int j=0; j<Dijkstra2(i, i+k+1).size(); j++)
+                    {
+                        recip[j]=(Dijkstra2(i, i+1+k)[j]);
+
+                        if (recip[j]==numsommet)
+                        {
+                            cpt++;
+                        }
+                    }
+                }
+            }
+        }
+        k++;
+
+    }
+    std::cout << "Nombre de chemins parmis tous les plus courts chemins a passer par : " << numsommet << " : " << cpt << std::endl;
+    return cpt;
+}
+
+
 std::vector<int> Graphe::BFS(int id_initial)
 {
     std::vector<int> l_preds;
