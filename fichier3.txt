@@ -1,9 +1,0 @@
-Sommet0 : CD (non normalise)=1  CD (normalise)=0.125  CVP : 0.16214 CP (non normalise)=0.0454545 CP (normalise)=0.363636
-Sommet1 : CD (non normalise)=3  CD (normalise)=0.375  CVP : 0.353429 CP (non normalise)=0.0666667 CP (normalise)=0.533333
-Sommet2 : CD (non normalise)=2  CD (normalise)=0.25  CVP : 0.320637 CP (non normalise)=0.0526316 CP (normalise)=0.421053
-Sommet3 : CD (non normalise)=3  CD (normalise)=0.375  CVP : 0.497351 CP (non normalise)=0.0714286 CP (normalise)=0.571429
-Sommet4 : CD (non normalise)=2  CD (normalise)=0.25  CVP : 0.21315 CP (non normalise)=0.0526316 CP (normalise)=0.421053
-Sommet5 : CD (non normalise)=2  CD (normalise)=0.25  CVP : 0.291488 CP (non normalise)=0.0555556 CP (normalise)=0.444444
-Sommet6 : CD (non normalise)=3  CD (normalise)=0.375  CVP : 0.433588 CP (non normalise)=0.0666667 CP (normalise)=0.533333
-Sommet7 : CD (non normalise)=2  CD (normalise)=0.25  CVP : 0.260517 CP (non normalise)=0.0555556 CP (normalise)=0.444444
-Sommet8 : CD (non normalise)=2  CD (normalise)=0.25  CVP : 0.335211 CP (non normalise)=0.05 CP (normalise)=0.4

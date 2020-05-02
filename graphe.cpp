@@ -19,27 +19,22 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2,bool pondere):m
     {
         throw std::runtime_error {"Impossible d'ouvrir le fichier"};
     }
-    /*
-    if (!ifs2)
-    {
-        throw std::runtime_error {"Impossible d'ouvrir le fichier"};
-    }
-    */
     ifs >> oriente;
-    m_orientation=oriente;
+    if (oriente==0)m_orientation=false;
+    else if (oriente==1)m_orientation=true;
     ifs >> ordre;
     m_ordre = ordre;
     std::cout << "Ouverture des 2 fichiers:" << std::endl ;
-    if (oriente ==0)
+    if (m_orientation==false)
     {
-        std::cout << "Orientation: non oriente"<< std::endl;
+        std::cout << "Orientation: non oriente" << std::endl;
     }
     else
     {
         std::cout << "Orientation : oriente" << std::endl;
     }
 
-    std::cout << "Il y'a " << ordre<<" sommets" << std::endl ;
+    std::cout << "Il y'a " << ordre <<" sommets" << std::endl ;
     for (int i=2; i<ordre+2; i++)
     {
         ifs >> numsommet;
@@ -64,8 +59,6 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2,bool pondere):m
         ifs >> sommet2;
         std::cout << " Sommet2 : " << sommet2 << std::endl;
         m_aretes.push_back(new arete(idarete,"blue",m_sommets[sommet1],m_sommets[sommet2],idarete, poids));
-        /*m_sommets[sommet1]->Ajouter_adj(m_sommets[sommet2],1);
-        m_sommets[sommet2]->Ajouter_adj(m_sommets[sommet1],1);*/
     }
 
     if (m_pondere==true)
@@ -83,6 +76,7 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2,bool pondere):m
             sommet1= m_aretes[idarete2]->getsommet1()->getnum();
             sommet2= m_aretes[idarete2]->getsommet2()->getnum();
             m_sommets[sommet1]->Ajouter_adj(m_sommets[sommet2],poids);
+            if (m_orientation==false)
             m_sommets[sommet2]->Ajouter_adj(m_sommets[sommet1],poids);
         }
     }
@@ -94,6 +88,7 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2,bool pondere):m
             sommet1= m_aretes[i]->getsommet1()->getnum();
             sommet2= m_aretes[i]->getsommet2()->getnum();
             m_sommets[sommet1]->Ajouter_adj(m_sommets[sommet2],1);
+            if (m_orientation==false)
             m_sommets[sommet2]->Ajouter_adj(m_sommets[sommet1],1);
         }
     }
@@ -116,6 +111,11 @@ void Graphe::setpondere(int valeur)
         m_pondere=false;
     else
         m_pondere=true;
+}
+void Graphe::setflechePleine(int valeur)
+{
+    if (valeur==2)m_flechePleine=false;
+    else m_flechePleine=true;
 }
 void Graphe::changerponderation(std::string fichier)
 {
@@ -230,7 +230,7 @@ void Graphe::supparete(int id)
             sommet*sommet1=m_aretes[i]->getsommet1();
             sommet*sommet2=m_aretes[i]->getsommet2();
             sommet1->Supprimer_adj(sommet2);
-            if (m_orientation==0)
+            if (m_orientation==false)
                 sommet2->Supprimer_adj(sommet1);
             delete(m_aretes[i]);
             m_aretes.erase (m_aretes.begin()+i);
@@ -244,23 +244,28 @@ void Graphe::dessiner()
     svgout.addGrid();
     svgout.addText(750, 65, "En rouge: l'indice de l'arete", "red");
     svgout.addText(750, 85, "En vert: le poids de l'arete", "lightgreen");
-    svgout.addText(750, 105, "Arbre realise a partir du fichier : ", "black");
+    svgout.addText(750, 105, "Graphe realise a partir du fichier : ", "black");
     svgout.addText(750, 125, ">", "black");
     svgout.addText(760, 125, m_nomFichier, "black");
+    if(m_orientation==true)
+        svgout.addText(235, 45, "Ce graphe est oriente", "black");
+        else svgout.addText(235, 45, "Ce graphe n'est pas oriente", "black");
     if (m_pondere==true)
     {
-        svgout.addText(750, 145, "Arbre pondere a partir du fichier : ", "black");
+        svgout.addText(750, 145, "Graphe pondere a partir du fichier : ", "black");
         svgout.addText(750, 165, ">", "black");
         svgout.addText(760, 165, m_nomFichier2, "black");
     }
     else if (m_pondere==false)
     {
-        svgout.addText(750, 145, "Arbre non pondere", "black");
+        svgout.addText(750, 145, "Graphe non pondere", "black");
     }
     for (size_t j =0; j<m_aretes.size(); ++j)
     {
         m_aretes[j]->dessiner(svgout);
         std::cout<<"Arete entre le sommet "<<m_aretes[j]->getsommet1()->getnum()<<"("<<m_aretes[j]->getsommet1()->getid()<<")"""" et le sommet "<<m_aretes[j]->getsommet2()->getnum()<<"("<<m_aretes[j]->getsommet2()->getid()<<")"<<std::endl;
+        if(m_orientation==true)
+        m_aretes[j]->dessinerFleche(svgout,m_flechePleine);
     }
 
     for (size_t i =0; i<m_sommets.size(); ++i)
@@ -270,11 +275,11 @@ void Graphe::dessiner()
     }
     if (m_connexite==true)
     {
-        svgout.addText(235, 65, "Cet arbre est connexe", "blue");
+        svgout.addText(235, 65, "Ce graphe est connexe", "blue");
     }
     else if (m_connexite==false)
     {
-        svgout.addText(235, 65, "Cet arbre n'est pas connexe", "red");
+        svgout.addText(235, 65, "Ce graphe n'est pas connexe", "red");
     }
 }
 

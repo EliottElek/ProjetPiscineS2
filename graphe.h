@@ -18,8 +18,9 @@ private :
     std::string m_nomFichier;
     std::string m_nomFichier2;
     bool m_pondere= false;
-    int m_orientation;
-    bool m_connexite = true;
+    bool m_orientation=false;
+    bool m_connexite =true;
+    bool m_flechePleine=true;
 
 public :
     Graphe();
@@ -37,6 +38,7 @@ public :
     int Dijkstra(int id_initial,int id_final);
     std::vector <int> Dijkstra2(int id_initial,int id_final);
     float nbdegre (int numsommet);
+    void setflechePleine(int valeur);
     void changerponderation(std::string fichier);
     float centraldegrenonnormal (int numsommet);
     float centraldegrenormal (int numsommet);

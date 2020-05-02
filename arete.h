@@ -20,6 +20,7 @@ public:
     arete (int numero,std:: string color,sommet* sommet1, sommet* sommet2,int id, int poids);
     ~arete();
     void dessiner(Svgfile&svgout);
+    void dessinerFleche(Svgfile&svgout,bool plein);
     int getnum ()const;
     sommet* getsommet1();
     sommet* getsommet2();

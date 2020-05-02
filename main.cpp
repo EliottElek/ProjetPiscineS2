@@ -55,24 +55,6 @@ int main()
             Graphe g(fichierarbre,fichierponderation, ponderation);
             g.setpondere(choixpondere);
             g.dessiner();
-            std::vector <float> c = g.centralvecteurpropre ();
-            if(os.is_open())
-            {
-                for (unsigned int m=0; m<g.gettabsommets().size(); m++)
-                {
-                    float a= g.centraldegrenonnormal (m);
-                    float b = g.centraldegrenormal (m);
-                    float d= g.centraldeproximitenonnormalise(m);
-                    float e= g.centraldeproximitenormalise(m);
-                    os << "Sommet" << m << " : Indice de CD (non normalise) : "<< a ;
-                    os << "  Indice de CD (normalise) : "<< b ;
-                    os << "  Indice de CVP : " << c[m];
-                    os << " Indice de CP (non normalise) : "<< d;
-                    os << " Indice de CP (normalise) : "<< e<< std::endl;
-                }
-            }
-
-
             system("pause");
             system("cls");
             do
@@ -84,13 +66,14 @@ int main()
                 std::cout<<"3.BFS"<<std::endl;
                 std::cout<<"4.Calculer les indices"<<std::endl;
                 std::cout<<"5.Changer le systeme de ponderation"<<std::endl;
-                std::cout<<"6.Retour"<<std::endl;
+                std::cout<<"6.Changer l'aspect des fleches"<<std::endl;
+                std::cout<<"7.Retour"<<std::endl;
                 do
                 {
                     std::cout<<"choix : ";
                     std::cin>>choix2;
                 }
-                while ((choix2<1)||(choix2>5));
+                while ((choix2<1)||(choix2>8));
                 switch (choix2)
                 {
                 case 1:
@@ -220,6 +203,19 @@ int main()
                 }
                 break;
                 case 6:
+                    {
+                        system("cls");
+                        int choixaspect;
+                        std::cout<<"Comment voulez-vous les fleches ?"<<std::endl;
+                        std::cout<<"1.Pleines    2.Creuses"<<std::endl;
+                        std::cout<<"choix : ";
+                        std::cin>>choixaspect;
+                        g.setflechePleine(choixaspect);
+                        g.dessiner();
+                        system("cls");
+
+                    }break;
+                case 7:
                 {
                     retour = 1;
                     system("cls");
