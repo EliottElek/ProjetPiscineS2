@@ -63,7 +63,7 @@ int main()
                 std::cout<<"Vous avez charge un arbre. Quel voulez-vous faire ?"<<std::endl;
                 std::cout<<"1.Supprimer des aretes"<<std::endl;
                 std::cout<<"2.Dikjstra d'un sommet a un autre"<<std::endl;
-                std::cout<<"3.BFS"<<std::endl;
+                std::cout<<"3.Verification de la connexite"<<std::endl;
                 std::cout<<"4.Calculer les indices"<<std::endl;
                 std::cout<<"5.Changer le systeme de ponderation"<<std::endl;
                 std::cout<<"6.Changer l'aspect des fleches"<<std::endl;
