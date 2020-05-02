@@ -417,13 +417,11 @@ std::vector <int> Graphe::Dijkstra2(int id_initial,int id_final)
             break;
         else
         {
-//            std::cout<< " <-- ";
             temp = road[temp]->getnum();
             liste.push_back(temp) ;
         }
     }
-//        std::cout<<std::endl;
-//        std::cout<< "longueur du chemin : " << done[id_final];
+
     return liste;
     // Compliqué de retracer la longueur de chaque arête car on a pas la longueur de chaque arête dans done
 }
@@ -530,14 +528,19 @@ float Graphe::nbdegre (int numsommet)
 }
 
 float Graphe::centraldegrenonnormal (int numsommet)
-{
-    std::cout << "Indice de centralite de degre non normalise :" << nbdegre(numsommet) << std::endl;
+
+{   std::cout << "" << std::endl;
+
+
+
+std::cout << "Sommet " <<  numsommet <<":"<<std::endl;
+    std::cout << "CD(non normalise) :" << nbdegre(numsommet) << std::endl;
     return nbdegre(numsommet);
 }
 
 float Graphe::centraldegrenormal (int numsommet)
 {
-    std::cout << "Indice de centralite de degre normalise :" << (nbdegre(numsommet)/(m_ordre-1)) << std::endl;
+    std::cout << "CD(normalise) :" << (nbdegre(numsommet)/(m_ordre-1)) << std::endl;
     return (nbdegre(numsommet)/(m_ordre-1));
 }
 
@@ -552,7 +555,7 @@ float Graphe :: centraldeproximitenonnormalise(int numsommet)
 
     }
 
-    std::cout<< "Indice de centralite de proximite non normalise : " << invpoids<< std::endl;
+    std::cout<< "CP(non normalise) : " << invpoids<< std::endl;
 
     return invpoids;
 
@@ -569,7 +572,7 @@ float Graphe :: centraldeproximitenormalise(int numsommet)
 
     }
 
-    std::cout<< "Indice de centralite de proximite normalise : " << invpoids<< std::endl;
+    std::cout<< "CP(normalise) : " << invpoids<< std::endl;
 
     return invpoids;
 
@@ -586,13 +589,14 @@ int Graphe :: getnbvoisin (int numsommet)
         if (m_sommets[i]->getnum()==numsommet)
         {
             cpt=m_sommets[i]->getAdj().size();
+
         }
     }
     return cpt;
 }
 
 
-std::vector <float> Graphe :: centralvecteurpropre ()
+std::vector <float> Graphe :: centralvecteurpropre (int numsommet)
 {
     std::vector <float> Cvp ;
     std::vector <float> Csi  ;
@@ -631,10 +635,13 @@ std::vector <float> Graphe :: centralvecteurpropre ()
         ++k;
     }
     while (((lambda[k-2]-lambda[k-1])>0.001)||(lambda[k-2]-lambda[k-1])<-0.001);
-    for (int i = 0; i<m_ordre ; i++)
-    {
-        std::cout << "Pour lambda = " << lambda[k-1] << " CV[p] vaut : " << Cvp[i] << std::endl;
-    }
+//    for (int i = 0; i<m_ordre ; i++)
+//    {
+//
+//        std::cout << "Pour  lambda = " << lambda[k-1] << " CVP vaut : " << Cvp[i] << std::endl;
+//    }
+std::cout<< "CVP= "<< Cvp[numsommet]<<" avec lambda= "<< lambda[k-1] <<std::endl;
+
 
 
     return Cvp;

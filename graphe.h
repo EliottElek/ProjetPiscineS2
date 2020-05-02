@@ -40,7 +40,7 @@ public :
     void changerponderation(std::string fichier);
     float centraldegrenonnormal (int numsommet);
     float centraldegrenormal (int numsommet);
-    std::vector <float>  centralvecteurpropre ();
+    std::vector <float>  centralvecteurpropre (int numsommet);
     int getnbvoisin (int numsommet);
     float centraldeproximitenonnormalise(int numsommet);
     float centraldeproximitenormalise(int numsommet);

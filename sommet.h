@@ -32,6 +32,7 @@ public:
     void setx (int x);
     void sety(int y);
     void init(unsigned int sommet);
+//    std::string  getidsommet(int numsommet);
 
 
 

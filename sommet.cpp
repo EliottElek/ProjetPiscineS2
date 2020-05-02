@@ -82,3 +82,8 @@ void sommet::afficher()
 
     std::cout<<std::endl;
 }
+
+//std::string  sommet::getidsommet(int numsommet)
+//{
+//    return m_id;
+//}

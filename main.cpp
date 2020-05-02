@@ -55,20 +55,21 @@ int main()
             Graphe g(fichierarbre,fichierponderation, ponderation);
             g.setpondere(choixpondere);
             g.dessiner();
-            std::vector <float> c = g.centralvecteurpropre ();
+//            std::vector <float> c = g.centralvecteurpropre ();
             if(os.is_open())
             {
                 for (unsigned int m=0; m<g.gettabsommets().size(); m++)
                 {
                     float a= g.centraldegrenonnormal (m);
                     float b = g.centraldegrenormal (m);
+                     std::vector <float> c = g.centralvecteurpropre (m);
                     float d= g.centraldeproximitenonnormalise(m);
                     float e= g.centraldeproximitenormalise(m);
-                    os << "Sommet" << m << " : Indice de CD (non normalise) : "<< a ;
-                    os << "  Indice de CD (normalise) : "<< b ;
-                    os << "  Indice de CVP : " << c[m];
-                    os << " Indice de CP (non normalise) : "<< d;
-                    os << " Indice de CP (normalise) : "<< e<< std::endl;
+                    os << "Sommet" << m << " : CD(non normalise)= "<< a ;
+                    os << " CD(normalise)= "<< b ;
+                    os << " CVP(normalise)= " << c[m];
+                    os << " CP(non normalise)= "<< d;
+                    os << " CP(normalise)= "<< e<< std::endl;
                 }
             }
 
@@ -78,11 +79,11 @@ int main()
             do
             {
                 int choix2;
-                std::cout<<"Vous avez charge un arbre. Quel voulez-vous faire ?"<<std::endl;
+                std::cout<<"Vous avez charge un graphe. Quel voulez-vous faire ?"<<std::endl;
                 std::cout<<"1.Supprimer des aretes"<<std::endl;
                 std::cout<<"2.Dikjstra d'un sommet a un autre"<<std::endl;
-                std::cout<<"3.BFS"<<std::endl;
-                std::cout<<"4.Calculer les indices"<<std::endl;
+                std::cout<<"3.Verifier la connexite du graphe"<<std::endl;
+                std::cout<<"4.Calculer les indices de centralite des sommets"<<std::endl;
                 std::cout<<"5.Changer le systeme de ponderation"<<std::endl;
                 std::cout<<"6.Retour"<<std::endl;
                 do
@@ -101,7 +102,7 @@ int main()
                     for (unsigned int i = 0; i<g.gettabaretes().size(); ++i)
                         std::cout<<"-"<<g.gettabaretes()[i]->getid();
                     std::cout<<std::endl;
-                    std::cout <<"quelle arete faut-il supprimer ?";
+                    std::cout <<"Quelle arete faut-il supprimer ?";
                     std::cin>>idarete;
                     g.supparete(idarete);
                     g.dessiner();
@@ -150,9 +151,9 @@ int main()
 
                     }
                     if (connexe==1)
-                        std::cout<<"l'arbre est connexe."<<std::endl;
+                        std::cout<<"le graphe est connexe."<<std::endl;
                     else
-                        std::cout<<"l'arbre n'est pas connexe ta maman."<<std::endl;
+                        std::cout<<"le graphe n'est pas connexe."<<std::endl;
                     g.setconnexite(connexe);
                     g.dessiner();
                     std::cout<<std::endl;
@@ -164,7 +165,7 @@ int main()
                 case 4:
                 {
                     system("cls");
-                    std::vector <float> c = g.centralvecteurpropre ();
+
                     std::ofstream os("fichier3.txt");
 
                     if(os.is_open())
@@ -173,13 +174,15 @@ int main()
                         {
                             float a= g.centraldegrenonnormal (m);
                             float b = g.centraldegrenormal (m);
+                            std::vector <float> c = g.centralvecteurpropre (m);
+
                             float d= g.centraldeproximitenonnormalise(m);
                             float e= g.centraldeproximitenormalise(m);
-                            os << "Sommet" << m << " : CD (non normalise)="<< a ;
-                            os << "  CD (normalise)="<< b ;
-                            os << "  CVP : " << c[m];
-                            os << " CP (non normalise)="<< d;
-                            os << " CP (normalise)="<< e<< std::endl;
+                            os << "Sommet" << m << " : CD(non normalise)= "<< a ;
+                            os << " CD(normalise)= "<< b ;
+                            os << " CVP(normalise)= " << c[m];
+                            os << " CP(non normalise)= "<< d;
+                            os << " CP(normalise)= "<< e<< std::endl;
                         }
                     }
                     system("pause");
@@ -193,7 +196,7 @@ int main()
                     int choix;
                     std::string fichier;
                     std::cout<<"Ajoutez une ponderation a partir d'un fichier texte, ou retirez la ponderation existante."<<std::endl;
-                    std::cout<<"Retirer la ponderation mettra le poid de chaque arete a 1."<<std::endl;
+                    std::cout<<"Retirer la ponderation mettra le poids de chaque arete a 1."<<std::endl;
                     std::cout<<"Voulez vous ajouter ou retirer une ponderation ?"<<std::endl;
                     std::cout<<"1.Ajouter     2.Retirer"<<std::endl;
                     do
