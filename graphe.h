@@ -35,6 +35,7 @@ public :
     void setpondere(int valeur);
     std::vector<int>BFS(int id_initial);
     int Dijkstra(int id_initial,int id_final);
+    std::vector <int> Dijkstra2(int id_initial,int id_final);
     float nbdegre (int numsommet);
     float centraldegrenonnormal (int numsommet);
     float centraldegrenormal (int numsommet);
@@ -42,6 +43,7 @@ public :
     int getnbvoisin (int numsommet);
     float centraldeproximitenonnormalise(int numsommet);
     float centraldeproximitenormalise(int numsommet);
+    float centraliteintermediaritenonnormalise (int numsommet);
 };
 
 
