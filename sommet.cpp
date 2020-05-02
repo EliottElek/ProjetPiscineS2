@@ -60,9 +60,9 @@ void sommet::Supprimer_adj(sommet*adj)
     m_adjacents.erase(m_adjacents.begin()+i);
     }
 }
-void sommet::ajouterPoidsadjacents( std::pair<sommet*,int> temp, int poids)
+void sommet::ajouterPoidsadjacents( int i, int poids)
 {
-    temp.second = poids;
+    m_adjacents[i].second = poids;
 }
 void sommet::afficher()
 {

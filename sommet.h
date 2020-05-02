@@ -22,7 +22,7 @@ public:
     void Ajouter_adj(sommet* adj,int poids);
     void afficher();
     std::vector <std::pair<sommet*,int>> getAdj() const;
-    void ajouterPoidsadjacents( std::pair<sommet*,int> temp, int poids);
+    void ajouterPoidsadjacents(int i, int poids);
     void Supprimer_adj(sommet*adj);
     void dessiner(Svgfile&svgout);
     int getnum ()const;

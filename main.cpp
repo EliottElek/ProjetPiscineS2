@@ -49,7 +49,7 @@ int main()
             }
             if (choixpondere==2)
             {
-                fichierponderation="fichier2.txt";
+                fichierponderation="rien";
                 ponderation = false;
             }
             Graphe g(fichierarbre,fichierponderation, ponderation);
@@ -82,9 +82,15 @@ int main()
                 std::cout<<"1.Supprimer des aretes"<<std::endl;
                 std::cout<<"2.Dikjstra d'un sommet a un autre"<<std::endl;
                 std::cout<<"3.BFS"<<std::endl;
-                std::cout<<"4.Retour"<<std::endl;
-                std::cout<<"choix : ";
-                std::cin>>choix2;
+                std::cout<<"4.Calculer les indices"<<std::endl;
+                std::cout<<"5.Changer le systeme de ponderation"<<std::endl;
+                std::cout<<"6.Retour"<<std::endl;
+                do
+                {
+                    std::cout<<"choix : ";
+                    std::cin>>choix2;
+                }
+                while ((choix2<1)||(choix2>5));
                 switch (choix2)
                 {
                 case 1:
@@ -156,6 +162,64 @@ int main()
                 }
                 break;
                 case 4:
+                {
+                    system("cls");
+                    std::vector <float> c = g.centralvecteurpropre ();
+                    std::ofstream os("fichier3.txt");
+
+                    if(os.is_open())
+                    {
+                        for (unsigned int m=0; m<g.gettabsommets().size(); m++)
+                        {
+                            float a= g.centraldegrenonnormal (m);
+                            float b = g.centraldegrenormal (m);
+                            float d= g.centraldeproximitenonnormalise(m);
+                            float e= g.centraldeproximitenormalise(m);
+                            os << "Sommet" << m << " : CD (non normalise)="<< a ;
+                            os << "  CD (normalise)="<< b ;
+                            os << "  CVP : " << c[m];
+                            os << " CP (non normalise)="<< d;
+                            os << " CP (normalise)="<< e<< std::endl;
+                        }
+                    }
+                    system("pause");
+                    system("cls");
+
+                }
+                break;
+                case 5:
+                {
+                    system("cls");
+                    int choix;
+                    std::string fichier;
+                    std::cout<<"Ajoutez une ponderation a partir d'un fichier texte, ou retirez la ponderation existante."<<std::endl;
+                    std::cout<<"Retirer la ponderation mettra le poid de chaque arete a 1."<<std::endl;
+                    std::cout<<"Voulez vous ajouter ou retirer une ponderation ?"<<std::endl;
+                    std::cout<<"1.Ajouter     2.Retirer"<<std::endl;
+                    do
+                    {
+                        std::cout<<"choix : ";
+                        std::cin>>choix;
+                    }
+                    while((choix!=1)&&(choix!=2));
+                    if (choix==1)
+                    {
+                        g.setpondere(1);
+                        std::cout<<"Nom du fichier de ponderation : ";
+                        std::cin>>fichier;
+                        g.changerponderation(fichier);
+                    }
+                    else if (choix==2)
+                    {
+                        g.setpondere(2);
+                        g.changerponderation("rien");
+                    }
+                    g.dessiner();
+                    system("cls");
+
+                }
+                break;
+                case 6:
                 {
                     retour = 1;
                     system("cls");

@@ -19,10 +19,12 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2,bool pondere):m
     {
         throw std::runtime_error {"Impossible d'ouvrir le fichier"};
     }
+    /*
     if (!ifs2)
     {
         throw std::runtime_error {"Impossible d'ouvrir le fichier"};
     }
+    */
     ifs >> oriente;
     m_orientation=oriente;
     ifs >> ordre;
@@ -66,23 +68,34 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2,bool pondere):m
         m_sommets[sommet2]->Ajouter_adj(m_sommets[sommet1],1);*/
     }
 
-    ifs2 >> taille2;
-    std::cout << std::endl;
-    for (int i=1; i<taille2+1; i++)
+    if (m_pondere==true)
     {
-        int sommet1;
-        int sommet2;
-        ifs2 >> idarete2 ;
-        std :: cout << "Poids de l'arete " << idarete2 << " :" ;
-        ifs2 >> poids;
-        if (m_pondere==false)
-            poids =1;
-        std::cout << poids << std::endl;
-        m_aretes[idarete2]->setpoids(poids);
-        sommet1= m_aretes[idarete2]->getsommet1()->getnum();
-        sommet2= m_aretes[idarete2]->getsommet2()->getnum();
-        m_sommets[sommet1]->Ajouter_adj(m_sommets[sommet2],poids);
-        m_sommets[sommet2]->Ajouter_adj(m_sommets[sommet1],poids);
+        ifs2 >> taille2;
+        for (int i=1; i<taille2+1; i++)
+        {
+            int sommet1;
+            int sommet2;
+            ifs2 >> idarete2 ;
+            std :: cout << "Poids de l'arete " << idarete2 << " :" ;
+            ifs2 >> poids;
+            std::cout << poids << std::endl;
+            m_aretes[idarete2]->setpoids(poids);
+            sommet1= m_aretes[idarete2]->getsommet1()->getnum();
+            sommet2= m_aretes[idarete2]->getsommet2()->getnum();
+            m_sommets[sommet1]->Ajouter_adj(m_sommets[sommet2],poids);
+            m_sommets[sommet2]->Ajouter_adj(m_sommets[sommet1],poids);
+        }
+    }
+    else if (m_pondere==false)
+    {
+        for (unsigned int i=0; i<m_aretes.size(); i++)
+        {
+            m_aretes[i]->setpoids(1);
+            sommet1= m_aretes[i]->getsommet1()->getnum();
+            sommet2= m_aretes[i]->getsommet2()->getnum();
+            m_sommets[sommet1]->Ajouter_adj(m_sommets[sommet2],1);
+            m_sommets[sommet2]->Ajouter_adj(m_sommets[sommet1],1);
+        }
     }
 }
 int Graphe::getordre()
@@ -104,6 +117,95 @@ void Graphe::setpondere(int valeur)
     else
         m_pondere=true;
 }
+void Graphe::changerponderation(std::string fichier)
+{
+    int sommet1;
+    int sommet2;
+    if (m_pondere==false)
+    {
+        for (unsigned int i=0; i<m_aretes.size(); ++i)
+        {
+            m_aretes[i]->setpoids(1);
+            sommet1= m_aretes[i]->getsommet1()->getnum();
+            sommet2= m_aretes[i]->getsommet2()->getnum();
+            for (unsigned int j=0; j<m_sommets.size(); ++j)
+            {
+                if (m_sommets[j]->getnum()==sommet1)
+                {
+                    for (unsigned int k=0; k<m_sommets[j]->getAdj().size(); ++k)
+                    {
+                        if(m_sommets[j]->getAdj()[k].first->getnum()==sommet2)
+                        {
+                            m_sommets[j]->ajouterPoidsadjacents(k,1);
+                        }
+                    }
+                }
+            }
+            for (unsigned int j=0; j<m_sommets.size(); ++j)
+            {
+                if (m_sommets[j]->getnum()==sommet2)
+                {
+                    for (unsigned int k=0; k<m_sommets[j]->getAdj().size(); ++k)
+                    {
+                        if(m_sommets[j]->getAdj()[k].first->getnum()==sommet1)
+                        {
+                            m_sommets[j]->ajouterPoidsadjacents(k,1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else if (m_pondere==true)
+    {
+        int taille;
+        int poids;
+        int idarete;
+        std::ifstream ifs(fichier);
+        ifs >> taille;
+        for (int i=1; i<taille+1; ++i)
+        {
+            ifs >> idarete;
+            ifs >> poids;
+            for (unsigned int j=0; j<m_aretes.size(); ++j)
+            {
+                if (idarete==m_aretes[j]->getid())
+                {
+                    m_aretes[j]->setpoids(poids);
+                    sommet1= m_aretes[j]->getsommet1()->getnum();
+                    sommet2= m_aretes[j]->getsommet2()->getnum();
+                    for (unsigned int j=0; j<m_sommets.size(); ++j)
+                    {
+                        if (m_sommets[j]->getnum()==sommet1)
+                        {
+                            for (unsigned int k=0; k<m_sommets[j]->getAdj().size(); ++k)
+                            {
+                                if(m_sommets[j]->getAdj()[k].first->getnum()==sommet2)
+                                {
+                                    m_sommets[j]->ajouterPoidsadjacents(k,poids);
+                                }
+                            }
+                        }
+                    }
+                    for (unsigned int j=0; j<m_sommets.size(); ++j)
+                    {
+                        if (m_sommets[j]->getnum()==sommet2)
+                        {
+                            for (unsigned int k=0; k<m_sommets[j]->getAdj().size(); ++k)
+                            {
+                                if(m_sommets[j]->getAdj()[k].first->getnum()==sommet1)
+                                {
+                                    m_sommets[j]->ajouterPoidsadjacents(k,poids);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        setFichier2(fichier);
+    }
+}
 std::vector<sommet*>Graphe::gettabsommets()
 {
     return m_sommets;
@@ -114,8 +216,10 @@ std::vector <arete*>Graphe::gettabaretes()
 }
 void Graphe::setconnexite(int valeur)
 {
-    if (valeur==1)m_connexite=true;
-    else m_connexite = false;
+    if (valeur==1)
+        m_connexite=true;
+    else
+        m_connexite = false;
 }
 void Graphe::supparete(int id)
 {
@@ -233,16 +337,16 @@ int Graphe::Dijkstra(int id_initial,int id_final)
     while(true)
     {
         // On affiche le sommet (et donc le chemin)
-//        std::cout<<temp;
+        //std::cout<<temp;
         if(temp == id_initial)
             break;
         else
-//            std::cout<< " <-- ";
-            temp = road[temp]->getnum();
+            //std::cout<< " <-- ";
+        temp = road[temp]->getnum();
 
     }
-//        std::cout<<std::endl;
-//        std::cout<< "longueur du chemin : " << done[id_final];
+    //std::cout<<std::endl;
+    //std::cout<< "longueur du chemin : " << done[id_final];
     return done[id_final];
     // Compliqu� de retracer la longueur de chaque ar�te car on a pas la longueur de chaque ar�te dans done
 }
@@ -339,7 +443,7 @@ float Graphe :: centraliteintermediaritenonnormalise (int numsommet)
             {
                 if (i+k+1!=numsommet)
                 {
-                    for (int j=0; j<Dijkstra2(i, i+k+1).size(); j++)
+                    for (unsigned int j=0; j<Dijkstra2(i, i+k+1).size(); j++)
                     {
                         recip[j]=(Dijkstra2(i, i+1+k)[j]);
 
@@ -407,21 +511,7 @@ std::vector<int> Graphe::BFS(int id_initial)
                 done.push_back(m_sommets[id_initial]->getAdj()[i].first->getnum() );
             }
         }
-/*
-        copie=file;
-        // Tant que la copie de la file n'est pas vide
-        while(!copie.empty())
-        {
-            // On affiche le premier élement
-            std::cout<<copie.front();
-            // Si ce n'est pas le dernier
-            if(copie.size()!=1)
-            {
-            std::cout << " <-- ";
-            }
-            // On passe au suivant
-            copie.pop();
-        }*/
+
     }
     return l_preds;
 }
@@ -540,7 +630,7 @@ std::vector <float> Graphe :: centralvecteurpropre ()
         }
         ++k;
     }
-    while (((lambda[k-2]-lambda[k-1])>0.01)||(lambda[k-2]-lambda[k-1])<-0.01);
+    while (((lambda[k-2]-lambda[k-1])>0.001)||(lambda[k-2]-lambda[k-1])<-0.001);
     for (int i = 0; i<m_ordre ; i++)
     {
         std::cout << "Pour lambda = " << lambda[k-1] << " CV[p] vaut : " << Cvp[i] << std::endl;
@@ -549,6 +639,3 @@ std::vector <float> Graphe :: centralvecteurpropre ()
 
     return Cvp;
 }
-
-
-

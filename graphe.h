@@ -37,6 +37,7 @@ public :
     int Dijkstra(int id_initial,int id_final);
     std::vector <int> Dijkstra2(int id_initial,int id_final);
     float nbdegre (int numsommet);
+    void changerponderation(std::string fichier);
     float centraldegrenonnormal (int numsommet);
     float centraldegrenormal (int numsommet);
     std::vector <float>  centralvecteurpropre ();

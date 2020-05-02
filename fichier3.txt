@@ -1,9 +1,9 @@
-Sommet0 : Indice de CD (non normalise) : 2  Indice de CD (normalise) : 0.25  Indice de CVP : 0.242536 Indice de CP (non normalise) : 0.0208333 Indice de CP (normalise) : 0.166667
-Sommet1 : Indice de CD (non normalise) : 3  Indice de CD (normalise) : 0.375  Indice de CVP : 0.363803 Indice de CP (non normalise) : 0.0263158 Indice de CP (normalise) : 0.210526
-Sommet2 : Indice de CD (non normalise) : 3  Indice de CD (normalise) : 0.375  Indice de CVP : 0.363803 Indice de CP (non normalise) : 0.0196078 Indice de CP (normalise) : 0.156863
-Sommet3 : Indice de CD (non normalise) : 4  Indice de CD (normalise) : 0.5  Indice de CVP : 0.485071 Indice de CP (non normalise) : 0.030303 Indice de CP (normalise) : 0.242424
-Sommet4 : Indice de CD (non normalise) : 3  Indice de CD (normalise) : 0.375  Indice de CVP : 0.363803 Indice de CP (non normalise) : 0.0144928 Indice de CP (normalise) : 0.115942
-Sommet5 : Indice de CD (non normalise) : 2  Indice de CD (normalise) : 0.25  Indice de CVP : 0.242536 Indice de CP (non normalise) : 0.0232558 Indice de CP (normalise) : 0.186047
-Sommet6 : Indice de CD (non normalise) : 3  Indice de CD (normalise) : 0.375  Indice de CVP : 0.363803 Indice de CP (non normalise) : 0.0263158 Indice de CP (normalise) : 0.210526
-Sommet7 : Indice de CD (non normalise) : 2  Indice de CD (normalise) : 0.25  Indice de CVP : 0.242536 Indice de CP (non normalise) : 0.0172414 Indice de CP (normalise) : 0.137931
-Sommet8 : Indice de CD (non normalise) : 2  Indice de CD (normalise) : 0.25  Indice de CVP : 0.242536 Indice de CP (non normalise) : 0.0178571 Indice de CP (normalise) : 0.142857
+Sommet0 : CD (non normalise)=1  CD (normalise)=0.125  CVP : 0.16214 CP (non normalise)=0.0454545 CP (normalise)=0.363636
+Sommet1 : CD (non normalise)=3  CD (normalise)=0.375  CVP : 0.353429 CP (non normalise)=0.0666667 CP (normalise)=0.533333
+Sommet2 : CD (non normalise)=2  CD (normalise)=0.25  CVP : 0.320637 CP (non normalise)=0.0526316 CP (normalise)=0.421053
+Sommet3 : CD (non normalise)=3  CD (normalise)=0.375  CVP : 0.497351 CP (non normalise)=0.0714286 CP (normalise)=0.571429
+Sommet4 : CD (non normalise)=2  CD (normalise)=0.25  CVP : 0.21315 CP (non normalise)=0.0526316 CP (normalise)=0.421053
+Sommet5 : CD (non normalise)=2  CD (normalise)=0.25  CVP : 0.291488 CP (non normalise)=0.0555556 CP (normalise)=0.444444
+Sommet6 : CD (non normalise)=3  CD (normalise)=0.375  CVP : 0.433588 CP (non normalise)=0.0666667 CP (normalise)=0.533333
+Sommet7 : CD (non normalise)=2  CD (normalise)=0.25  CVP : 0.260517 CP (non normalise)=0.0555556 CP (normalise)=0.444444
+Sommet8 : CD (non normalise)=2  CD (normalise)=0.25  CVP : 0.335211 CP (non normalise)=0.05 CP (normalise)=0.4
