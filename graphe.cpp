@@ -130,7 +130,7 @@ void Graphe::setpondere(int valeur)
     else
         m_pondere=true;
 }
-//////setter du booleen qui indique si les fleches du graphe sont pleines ou creuses
+///setter du booleen qui indique si les fleches du graphe sont pleines ou creuses
 /// en foncion du choix de l'utilisateur  dans le menu
 void Graphe::setflechePleine(int valeur)
 {
@@ -355,7 +355,7 @@ void Graphe::dessiner()
         svgout.addText(235, 65, "Ce graphe n'est pas connexe", "red");
     }
 }
-///Les differentes versions de Dijkstra presentes dans ce programme ont ete faites a partir 
+///Les differentes versions de Dijkstra presentes dans ce programme ont ete faites a partir
 ///du code du TP3 Dijkstra du binome compose de Matthieu Chaix et Eliott Morcillo
 int Graphe::Dijkstra(int id_initial,int id_final)
 {
@@ -373,22 +373,22 @@ int Graphe::Dijkstra(int id_initial,int id_final)
     int dispoarete=0; ///regarde si l'arete choisie est dispo
     sommet* current;
 
-    // Enfilage et marquage du sommet initial
+    /// Enfilage et marquage du sommet initial
     file.push({m_sommets[id_initial],0});
     done[id_initial] = 0;
     road[id_initial] = m_sommets[id_initial];
 
-    // Tant qu'il reste des sommets dans la file
+    /// Tant qu'il reste des sommets dans la file
     while(!file.empty())
     {
-        // Le premier de la priority queue devient le sommet actuel, la longueur est actualisee et il est supprime de la liste
+        /// Le premier de la priority queue devient le sommet actuel, la longueur est actualisee et il est supprime de la liste
         current = file.top().first;
         longueur = file.top().second;
         file.pop();
-        // Pour chaque adjacent
+        /// Pour chaque adjacent
         for(auto i : current->getAdj())
         {
-            // S'il n'est pas marque ou s'il est marque mais que le chemin est plus court
+            /// S'il n'est pas marque ou s'il est marque mais que le chemin est plus court
             if(done[i.first->getnum()] == -1 || (done[i.first->getnum()] != -1 &&  longueur + i.second < done[i.first->getnum()]))
             {
                 for (unsigned int j=0; j<m_aretes.size(); ++j)
@@ -413,10 +413,10 @@ int Graphe::Dijkstra(int id_initial,int id_final)
 
     }
     int temp = id_final;
-    // Tant qu'on ne revient pas au sommet initial
+    /// Tant qu'on ne revient pas au sommet initial
     while(true)
     {
-        // On affiche le sommet (et donc le chemin)
+        /// On affiche le sommet (et donc le chemin)
         if(temp == id_initial)
             break;
         else
@@ -428,12 +428,12 @@ int Graphe::Dijkstra(int id_initial,int id_final)
 
 std::vector <int> Graphe::Dijkstra2(int id_initial,int id_final)
 {
-    // Critere de tri & tri
+    /// Critere de tri & tri
     auto cmp = [](std::pair<sommet*,int>p1, std::pair<sommet*,int>p2)
     {
         return p2.second<p1.second;
     };
-    // Priority queue triee en fonction du poids a l'aide du tri ci-dessus
+    /// Priority queue triee en fonction du poids a l'aide du tri ci-dessus
     std::priority_queue<std::pair<const sommet*,int>, std::vector<std::pair<sommet*,int>>, decltype(cmp)> file(cmp);
 
     std::vector<int> done (m_ordre,-1);
@@ -442,29 +442,29 @@ std::vector <int> Graphe::Dijkstra2(int id_initial,int id_final)
     int dispoarete=0; ///regarde si l'arete choisie est dispo
     sommet* current;
 
-    // Enfilage et marquage du sommet initial
+    /// Enfilage et marquage du sommet initial
     file.push({m_sommets[id_initial],0});
     done[id_initial] = 0;
     road[id_initial] = m_sommets[id_initial];
 
-    // Tant qu'il reste des sommets dans la file
+    /// Tant qu'il reste des sommets dans la file
     while(!file.empty())
     {
-        // Le premier de la priority queue devient le sommet actuel, la longueur est actualisee et il est supprimé de la liste
+        /// Le premier de la priority queue devient le sommet actuel, la longueur est actualisee et il est supprimé de la liste
         current = file.top().first;
         longueur = file.top().second;
         file.pop();
-        // Pour chaque adjacent
+        /// Pour chaque adjacent
         for(auto i : current->getAdj())
         {
-            // S'il n'est pas marque ou s'il est marqué mais que le chemin est plus court
+            /// S'il n'est pas marque ou s'il est marqué mais que le chemin est plus court
             if(done[i.first->getnum()] == -1 || (done[i.first->getnum()] != -1 &&  longueur + i.second < done[i.first->getnum()]))
             {
                 for (unsigned int j=0; j<m_aretes.size(); ++j)
                 {
                     if ((((m_aretes[j]->getsommet1()->getnum())==(current->getnum()))&&((m_aretes[j]->getsommet2()->getnum())==(i.first->getnum())))||(((m_aretes[j]->getsommet1()->getnum())==(i.first->getnum())&&((m_aretes[j]->getsommet2()->getnum())==(current->getnum())))))
                     {
-                        // On l'ajoute dans la file, et on met à jour sa distance e l'origine
+                        /// On l'ajoute dans la file, et on met à jour sa distance e l'origine
                         dispoarete=1;///il y a bien une arete
                         file.push({i.first,i.second + longueur});
                         done[i.first->getnum()] = longueur + i.second;
@@ -482,10 +482,10 @@ std::vector <int> Graphe::Dijkstra2(int id_initial,int id_final)
     int temp = id_final;
     std::vector <int> liste ;
     liste.push_back(id_final);
-    // Tant qu'on ne revient pas au sommet initial
+    /// Tant qu'on ne revient pas au sommet initial
     while(true)
     {
-        // On affiche le sommet (et donc le chemin)
+        /// On affiche le sommet (et donc le chemin)
         if(temp == id_initial)
             break;
         else
@@ -497,6 +497,7 @@ std::vector <int> Graphe::Dijkstra2(int id_initial,int id_final)
     return liste;
 }
 
+/// Nos recherches/essais pour le calcul de l'indice de centralité d'intermédiaire
 float Graphe :: centraliteintermediaritenonnormalise (int numsommet)
 {
     std::vector <float> recip ;
@@ -532,7 +533,7 @@ float Graphe :: centraliteintermediaritenonnormalise (int numsommet)
 }
 
 ///l'utilisation du BFS sert ici a connaitre la connexite du graphe.
-///Ce code a ete cree pour le TP2 par le binome compose de Matthieu Chaix et Eliott Morcillo 
+///Ce code a ete cree pour le TP2 par le binome compose de Matthieu Chaix et Eliott Morcillo
 std::vector<int> Graphe::BFS(int id_initial)
 {
     std::vector<int> l_preds;
@@ -541,30 +542,29 @@ std::vector<int> Graphe::BFS(int id_initial)
     std::vector<int> done;
     bool temp =0;
 
-    // Creation de liste vide, puis enfilage et marquage de So
+    /// Creation de liste vide, puis enfilage et marquage de So
     file.push(id_initial);
     done.push_back(id_initial);
 
 
-    // Tant qu'il reste des sommets dans la file
+    /// Tant qu'il reste des sommets dans la file
     while(file.size()!=0)
     {
-        //std::cout<<std::endl;
-        // Le sommet actuel est remplacé par le premier de la file
+        /// Le sommet actuel est remplacé par le premier de la file
         id_initial = file.front();
         l_preds.push_back(id_initial);
 
         file.pop();
-        // Pour le nombre de sommets adjacents au sommet actuel
+        /// Pour le nombre de sommets adjacents au sommet actuel
         for(size_t i=0; i<m_sommets[id_initial]->getAdj().size(); ++i)
         {
-            // Pour le nombre de sommets marques
+            /// Pour le nombre de sommets marques
             for(size_t k=0; k<done.size(); ++k)
             {
-                // Si les sommets adjacents sont marques
+                /// Si les sommets adjacents sont marques
                 if(m_sommets[id_initial]->getAdj()[i].first->getnum() == done[k])
                 {
-                    // On s'arrête là
+                    /// On s'arrête à 1
                     temp=1;
                     break;
                 }
@@ -573,10 +573,10 @@ std::vector<int> Graphe::BFS(int id_initial)
                     temp=0;
                 }
             }
-            // Sinon
+            /// Sinon
             if(temp==0)
             {
-                // On enfile et on marque le sommet
+                /// On enfile et on marque le sommet
                 file.push(m_sommets[id_initial]->getAdj()[i].first->getnum() );
                 done.push_back(m_sommets[id_initial]->getAdj()[i].first->getnum() );
             }
@@ -600,14 +600,15 @@ float Graphe::nbdegre (int numsommet)
 }
 
 float Graphe::centraldegrenonnormal (int numsommet)
-{
-    std::cout << "Indice de centralite de degre non normalise :" << nbdegre(numsommet) << std::endl;
+{   std::cout << "" << std::endl;
+    std::cout << "Sommet " <<numsommet<< ":" << std::endl;
+    std::cout << "CD(non normalise): " << nbdegre(numsommet) << std::endl;
     return nbdegre(numsommet);
 }
 
 float Graphe::centraldegrenormal (int numsommet)
 {
-    std::cout << "Indice de centralite de degre normalise :" << (nbdegre(numsommet)/(m_ordre-1)) << std::endl;
+    std::cout << "CD(normalise): " << (nbdegre(numsommet)/(m_ordre-1)) << std::endl;
     return (nbdegre(numsommet)/(m_ordre-1));
 }
 
@@ -622,7 +623,7 @@ float Graphe :: centraldeproximitenonnormalise(int numsommet)
 
     }
 
-    std::cout<< "Indice de centralite de proximite non normalise : " << invpoids<< std::endl;
+    std::cout<< "CP(non normalise): " << invpoids<< std::endl;
 
     return invpoids;
 
@@ -639,13 +640,11 @@ float Graphe :: centraldeproximitenormalise(int numsommet)
 
     }
 
-    std::cout<< "Indice de centralite de proximite normalise : " << invpoids<< std::endl;
+    std::cout<< "CP(normalise): " << invpoids<< std::endl;
 
     return invpoids;
 
 }
-
-
 
 
 int Graphe :: getnbvoisin (int numsommet)
@@ -662,7 +661,7 @@ int Graphe :: getnbvoisin (int numsommet)
 }
 
 
-std::vector <float> Graphe :: centralvecteurpropre ()
+std::vector <float> Graphe :: centralvecteurpropre (int numsommet)
 {
     std::vector <float> Cvp ;
     std::vector <float> Csi  ;
@@ -701,10 +700,8 @@ std::vector <float> Graphe :: centralvecteurpropre ()
         ++k;
     }
     while (((lambda[k-2]-lambda[k-1])>0.001)||(lambda[k-2]-lambda[k-1])<-0.001);
-    for (int i = 0; i<m_ordre ; i++)
-    {
-        std::cout << "Pour lambda = " << lambda[k-1] << " CV[p] vaut : " << Cvp[i] << std::endl;
-    }
+
+        std::cout << "CVP(normalise): " << Cvp[numsommet] << " avec lambda: "<<lambda[k-1] << std::endl;
 
 
     return Cvp;

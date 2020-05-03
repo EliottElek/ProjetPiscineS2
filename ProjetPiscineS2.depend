@@ -22,7 +22,7 @@
 1587995485 source:c:\users\subes\projet-piscine\projetpiscine\projetpiscines2\projetpiscines2\graphe.cpp
 	"graphe.h"
 
-1588260885 source:c:\users\subes\projetpiscines2\graphe.cpp
+1588509956 source:c:\users\subes\projetpiscines2\graphe.cpp
 	"graphe.h"
 	"sommet.h"
 	"arete.h"
@@ -30,7 +30,7 @@
 	<stack>
 	"math.h"
 
-1588364371 c:\users\subes\projetpiscines2\graphe.h
+1588509216 c:\users\subes\projetpiscines2\graphe.h
 	<fstream>
 	<sstream>
 	<iostream>
@@ -40,7 +40,7 @@
 	"sommet.h"
 	"arete.h"
 
-1588363715 source:c:\users\subes\projetpiscines2\main.cpp
+1588509216 source:c:\users\subes\projetpiscines2\main.cpp
 	"graphe.h"
 	"couleur.h"
 	"svgfile.h"
@@ -49,12 +49,12 @@
 	"svgfile.h"
 	<math.h>
 
-1588258299 source:c:\users\subes\projetpiscines2\svgfile.cpp
+1588504160 source:c:\users\subes\projetpiscines2\svgfile.cpp
 	"svgfile.h"
 	<iostream>
 	<sstream>
 
-1588258299 c:\users\subes\projetpiscines2\svgfile.h
+1588509956 c:\users\subes\projetpiscines2\svgfile.h
 	<string>
 	<fstream>
 	<set>
@@ -192,31 +192,36 @@
 	"svgfile.h"
 	<vector>
 
-1588258299 source:c:\users\subes\projetpiscines2\arete.cpp
+1588507708 source:c:\users\subes\projetpiscines2\arete.cpp
 	"arete.h"
 	"sommet.h"
 	"svgfile.h"
+	<math.h>
+	<fstream>
+	<sstream>
+	<iostream>
+	<stdio.h>
 
-1588258299 c:\users\subes\projetpiscines2\arete.h
+1588507708 c:\users\subes\projetpiscines2\arete.h
 	<string>
 	"sommet.h"
 	"svgfile.h"
 
-1588258299 c:\users\subes\projetpiscines2\sommet.h
+1588504160 c:\users\subes\projetpiscines2\sommet.h
 	<string>
 	"svgfile.h"
 	<vector>
 
-1587997522 source:c:\users\subes\projetpiscines2\couleur.cpp
+1588504160 source:c:\users\subes\projetpiscines2\couleur.cpp
 	"couleur.h"
 	"svgfile.h"
 	<iostream>
 
-1588258299 c:\users\subes\projetpiscines2\couleur.h
+1588504160 c:\users\subes\projetpiscines2\couleur.h
 	<string>
 	<cstdint>
 
-1588363715 source:c:\users\subes\projetpiscines2\sommet.cpp
+1588507708 source:c:\users\subes\projetpiscines2\sommet.cpp
 	"graphe.h"
 	"couleur.h"
 	"svgfile.h"

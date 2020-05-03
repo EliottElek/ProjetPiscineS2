@@ -1,5 +1,8 @@
-///Projet piscine de Capucine Plantecoste, Subeshan Koneswaran, Eliott Morcillo
-///Projet de la semaine du 27/04/2020
+///Projet piscine de Capucine Plantecoste, Subeshan Koneswaran, Eliott Morcillo en ING 2_TD 3
+///Projet piscine de la semaine du 27/04/2020
+
+///Pour une facilité et rapidité d'affichage nous avons récupérer la page html fourni pour le projet
+///du premier semestre permettant la réactualisation automatique de l'output SVG.
 
 #include "graphe.h"
 #include "couleur.h"
@@ -22,6 +25,7 @@ int main()
         std::cout<<"2.Quitter"<<std::endl;
         std::cout<<"choix : ";
         std::cin>>choix;
+        /// Blindage pour le choix s'il est différent de 1 ou 2
         while((choix!=1)&&(choix!=2))
         {
             std::cout<<"Action impossible"<<std::endl;
@@ -42,6 +46,13 @@ int main()
             std::cout<<"L'arbre est-il pondere ?"<<std::endl;
             std::cout<<"1.Oui     2.Non"<<std::endl;
             std::cin>>choixpondere;
+            /// Blindage pour le choix s'il est différent de 1 ou 2
+            while((choixpondere!=1)&&(choixpondere!=2))
+        {
+            std::cout<<"Action impossible"<<std::endl;
+            std::cout<<"choix : ";
+            std::cin>>choixpondere;
+        }
             if (choixpondere==1)
             {
                 ponderation = true;
@@ -62,7 +73,7 @@ int main()
             do
             {
                 int choix2;
-                std::cout<<"Vous avez charge un arbre. Quel voulez-vous faire ?"<<std::endl;
+                std::cout<<"Vous avez charge un graphe. Quel voulez-vous faire ?"<<std::endl;
                 std::cout<<"1.Supprimer des aretes"<<std::endl;
                 std::cout<<"2.Verification de la connexite"<<std::endl;
                 std::cout<<"3.Calculer les indices"<<std::endl;
@@ -83,7 +94,7 @@ int main()
                         }
                     }
                 }
-                while((choix<1)||(choix>6));///blindage
+                while((choix<1)||(choix>6));///Blindage
                 switch (choix2)
                 {
                 case 1:
@@ -148,7 +159,6 @@ int main()
                 {
                     ///cas de calcul des differents indices
                     system("cls");
-                    std::vector <float> c = g.centralvecteurpropre ();
                     std::ofstream os("fichier3.txt");
                     ///a chaque nouveau calcul on modifie le fichier de sauvegarde
                     if(os.is_open())
@@ -157,6 +167,7 @@ int main()
                         {
                             float a= g.centraldegrenonnormal (m);
                             float b = g.centraldegrenormal (m);
+                            std::vector <float> c = g.centralvecteurpropre (m);
                             float d= g.centraldeproximitenonnormalise(m);
                             float e= g.centraldeproximitenormalise(m);
                             os << "Sommet" << m << " : CD (non normalise)="<< a ;

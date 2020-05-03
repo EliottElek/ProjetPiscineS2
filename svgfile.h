@@ -40,7 +40,7 @@ private:
     int m_width;
     int m_height;
 
-    // Pour éviter les ouverture multiples
+    /// Pour éviter les ouverture multiples
     static std::set<std::string> s_openfiles;
 };
 
