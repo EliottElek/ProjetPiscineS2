@@ -49,11 +49,11 @@ int main()
             std::cin>>choixpondere;
             /// Blindage pour le choix s'il est différent de 1 ou 2
             while((choixpondere!=1)&&(choixpondere!=2))
-        {
-            std::cout<<"Action impossible"<<std::endl;
-            std::cout<<"choix : ";
-            std::cin>>choixpondere;
-        }
+            {
+                std::cout<<"Action impossible"<<std::endl;
+                std::cout<<"choix : ";
+                std::cin>>choixpondere;
+            }
             if (choixpondere==1)
             {
                 ponderation = true;
@@ -164,18 +164,25 @@ int main()
                     ///a chaque nouveau calcul on modifie le fichier de sauvegarde
                     if(os.is_open())
                     {
-                        for (unsigned int m=0; m<g.gettabsommets().size(); m++)
+                        if (g.getOrientation()==false)
                         {
-                            float a= g.centraldegrenonnormal (m);
-                            float b = g.centraldegrenormal (m);
-                            std::vector <float> c = g.centralvecteurpropre (m);
-                            float d= g.centraldeproximitenonnormalise(m);
-                            float e= g.centraldeproximitenormalise(m);
-                            os << "Sommet" << m << " : CD (non normalise)= "<< a ;
-                            os << "  CD (normalise)= "<< b ;
-                            os << "  CVP (normalise)= " << c[m];
-                            os << " CP (non normalise)= "<< d;
-                            os << " CP (normalise)= "<< e<< std::endl;
+                            for (unsigned int m=0; m<g.gettabsommets().size(); m++)
+                            {
+                                float a= g.centraldegrenonnormal (m);
+                                float b = g.centraldegrenormal (m);
+                                std::vector <float> c = g.centralvecteurpropre (m);
+                                float d= g.centraldeproximitenonnormalise(m);
+                                float e= g.centraldeproximitenormalise(m);
+                                os << "Sommet" << m << " : CD (non normalise)= "<< a ;
+                                os << "  CD (normalise)= "<< b ;
+                                os << "  CVP (normalise)= " << c[m];
+                                os << " CP (non normalise)= "<< d;
+                                os << " CP (normalise)= "<< e<< std::endl;
+                            }
+                        }
+                        else if (g.getOrientation()==true)
+                        {
+                            std::cout<<"Cette option n'est pas encore disponible pour un graphe oriente."<<std::endl;
                         }
                     }
                     system("pause");
