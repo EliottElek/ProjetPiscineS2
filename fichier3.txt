@@ -1,9 +1,9 @@
-Sommet0 : CD (non normalise)=2  CD (normalise)=0.25  CVP : 0.242536 CP (non normalise)=0.0208333 CP (normalise)=0.166667
-Sommet1 : CD (non normalise)=3  CD (normalise)=0.375  CVP : 0.363803 CP (non normalise)=0.0263158 CP (normalise)=0.210526
-Sommet2 : CD (non normalise)=3  CD (normalise)=0.375  CVP : 0.363803 CP (non normalise)=0.0196078 CP (normalise)=0.156863
-Sommet3 : CD (non normalise)=4  CD (normalise)=0.5  CVP : 0.485071 CP (non normalise)=0.030303 CP (normalise)=0.242424
-Sommet4 : CD (non normalise)=3  CD (normalise)=0.375  CVP : 0.363803 CP (non normalise)=0.0144928 CP (normalise)=0.115942
-Sommet5 : CD (non normalise)=2  CD (normalise)=0.25  CVP : 0.242536 CP (non normalise)=0.0232558 CP (normalise)=0.186047
-Sommet6 : CD (non normalise)=3  CD (normalise)=0.375  CVP : 0.363803 CP (non normalise)=0.0263158 CP (normalise)=0.210526
-Sommet7 : CD (non normalise)=2  CD (normalise)=0.25  CVP : 0.242536 CP (non normalise)=0.0172414 CP (normalise)=0.137931
-Sommet8 : CD (non normalise)=2  CD (normalise)=0.25  CVP : 0.242536 CP (non normalise)=0.0178571 CP (normalise)=0.142857
+Sommet0 : CD (non normalise)= 2  CD (normalise)= 0.25  CVP (normalise) = 0.242536 CP (non normalise)= 0.0208333 CP (normalise)= 0.166667
+Sommet1 : CD (non normalise)= 3  CD (normalise)= 0.375  CVP (normalise) = 0.363803 CP (non normalise)= 0.0263158 CP (normalise)= 0.210526
+Sommet2 : CD (non normalise)= 3  CD (normalise)= 0.375  CVP (normalise) = 0.363803 CP (non normalise)= 0.0196078 CP (normalise)= 0.156863
+Sommet3 : CD (non normalise)= 4  CD (normalise)= 0.5  CVP (normalise) = 0.485071 CP (non normalise)= 0.030303 CP (normalise)= 0.242424
+Sommet4 : CD (non normalise)= 3  CD (normalise)= 0.375  CVP (normalise) = 0.363803 CP (non normalise)= 0.0144928 CP (normalise)= 0.115942
+Sommet5 : CD (non normalise)= 2  CD (normalise)= 0.25  CVP (normalise) = 0.242536 CP (non normalise)= 0.0232558 CP (normalise)= 0.186047
+Sommet6 : CD (non normalise)= 3  CD (normalise)= 0.375  CVP (normalise) = 0.363803 CP (non normalise)= 0.0263158 CP (normalise)= 0.210526
+Sommet7 : CD (non normalise)= 2  CD (normalise)= 0.25  CVP (normalise) = 0.242536 CP (non normalise)= 0.0172414 CP (normalise)= 0.137931
+Sommet8 : CD (non normalise)= 2  CD (normalise)= 0.25  CVP (normalise) = 0.242536 CP (non normalise)= 0.0178571 CP (normalise)= 0.142857

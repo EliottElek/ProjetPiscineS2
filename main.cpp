@@ -3,6 +3,7 @@
 
 ///Pour une facilité et rapidité d'affichage nous avons récupérer la page html fourni pour le projet
 ///du premier semestre permettant la réactualisation automatique de l'output SVG.
+///De même, la fonction Dikjstra est issue du TP3 d'Eliott Morcillo et de Mathieu Chaix (TD3)
 
 #include "graphe.h"
 #include "couleur.h"
@@ -18,7 +19,7 @@ int main()
     std::ofstream os("fichier3.txt");
     int choix=0, ok=0;
     int idarete=0;
-    do
+    do///Menu
     {
         std::cout<<"Quelle action voulez-vous effectuer ?"<<std::endl;
         std::cout<<"1.Charger un graphe"<<std::endl;
@@ -104,7 +105,7 @@ int main()
                     std::cout<<"Il reste "<<g.gettabaretes().size()<<" aretes."<<std::endl;
                     std::cout<<"il reste les aretes : ";
                     for (unsigned int i = 0; i<g.gettabaretes().size(); ++i)
-                        std::cout<<"-"<<g.gettabaretes()[i]->getid();
+                        std::cout<<"-"<<g.gettabaretes()[i]->getid();///affichage des aretes restantes
                     std::cout<<std::endl;
                     std::cout <<"quelle arete faut-il supprimer ?";
                     std::cin>>idarete;
@@ -145,7 +146,7 @@ int main()
                     if (connexe==1)
                         std::cout<<"l'arbre est connexe."<<std::endl;
                     else
-                        std::cout<<"l'arbre n'est pas connexe ta maman."<<std::endl;
+                        std::cout<<"l'arbre n'est pas connexe."<<std::endl;
                     ///on set la connexite du graphe
                     g.setconnexite(connexe);
                     g.dessiner();
@@ -170,11 +171,11 @@ int main()
                             std::vector <float> c = g.centralvecteurpropre (m);
                             float d= g.centraldeproximitenonnormalise(m);
                             float e= g.centraldeproximitenormalise(m);
-                            os << "Sommet" << m << " : CD (non normalise)="<< a ;
-                            os << "  CD (normalise)="<< b ;
-                            os << "  CVP : " << c[m];
-                            os << " CP (non normalise)="<< d;
-                            os << " CP (normalise)="<< e<< std::endl;
+                            os << "Sommet" << m << " : CD (non normalise)= "<< a ;
+                            os << "  CD (normalise)= "<< b ;
+                            os << "  CVP (normalise) = " << c[m];
+                            os << " CP (non normalise)= "<< d;
+                            os << " CP (normalise)= "<< e<< std::endl;
                         }
                     }
                     system("pause");

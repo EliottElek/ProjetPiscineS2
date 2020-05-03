@@ -11,11 +11,11 @@ private :
     sommet* m_sommet1;
     sommet* m_sommet2;
     int m_id;
-    int m_poids;
+    float m_poids;
 
 public:
 
-    arete (int numero,std:: string color,sommet* sommet1, sommet* sommet2,int id, int poids);
+    arete (int numero,std:: string color,sommet* sommet1, sommet* sommet2,int id, float poids);
     ~arete();
     void dessiner(Svgfile&svgout);
     void dessinerFleche(Svgfile&svgout,bool plein);
@@ -23,8 +23,8 @@ public:
     sommet* getsommet1();
     sommet* getsommet2();
     int getid()const;
-    int getpoids()const;
-    void setpoids(int poids);
+    float getpoids()const;
+    void setpoids(float poids);
 };
 
 #endif // ARETE_H_INCLUDED

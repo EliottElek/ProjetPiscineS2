@@ -36,7 +36,7 @@ public :
     void setpondere(int valeur);
     bool getOrientation();
     std::vector<int>BFS(int id_initial);
-    int Dijkstra(int id_initial,int id_final);
+    float Dijkstra(int id_initial,int id_final);
     std::vector <int> Dijkstra2(int id_initial,int id_final);
     float nbdegre (int numsommet);
     void setflechePleine(int valeur);

@@ -19,10 +19,10 @@ public:
     sommet (int numero,std:: string color,int x,int y,std::string id);
     ~sommet();
     sommet ();
-    void Ajouter_adj(sommet* adj,int poids);
+    void Ajouter_adj(sommet* adj,float poids);
     void afficher();
     std::vector <std::pair<sommet*,int>> getAdj() const;
-    void ajouterPoidsadjacents(int i, int poids);
+    void ajouterPoidsadjacents(int i, float poids);
     void Supprimer_adj(sommet*adj);
     void dessiner(Svgfile&svgout);
     int getnum ()const;

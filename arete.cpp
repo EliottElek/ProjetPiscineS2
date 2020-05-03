@@ -8,7 +8,7 @@
 #include<stdio.h>
 #define M_PI       3.14159265358979323846///constante définie qui sert à l'affichage des flèches
 ///constructeur d'arête
-arete::arete(int numero,std:: string color,sommet* sommet1,sommet* sommet2,int id, int poids):m_numero {numero},m_color {color},m_sommet1 {sommet1},m_sommet2 {sommet2},m_id {id},m_poids {poids}
+arete::arete(int numero,std:: string color,sommet* sommet1,sommet* sommet2,int id, float poids):m_numero {numero},m_color {color},m_sommet1 {sommet1},m_sommet2 {sommet2},m_id {id},m_poids {poids}
 {}
 ///destructeur d'arête
 arete::~arete()
@@ -67,7 +67,7 @@ void arete::dessinerFleche(Svgfile&svgout,bool plein)
         svgout.addTriangle(x2*175,y2*80,xtemp2*175,ytemp2*80,xf2*175,yf2*80,"blue");
     else
     {
-        ///on affiche trois droites 
+        ///on affiche trois droites
         svgout.addLine(xf1*175,yf1*80,xtemp2*175,ytemp2*80,"blue");
         svgout.addLine(xf1*175,yf1*80,xf2*175,yf2*80,"blue");
         svgout.addLine(xtemp2*175,ytemp2*80,xf2*175,yf2*80,"blue");
@@ -94,12 +94,12 @@ int arete::getid()const
     return m_id;
 }
 ///renvoie le poid de l'aretee
-int arete::getpoids()const
+float arete::getpoids()const
 {
     return m_poids;
 }
 ///modifie le poids de l'arete
-void arete::setpoids(int poids)
+void arete::setpoids(float poids)
 {
     m_poids = poids;
 }

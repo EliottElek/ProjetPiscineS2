@@ -37,7 +37,7 @@ int sommet::getx ()const
 {
     return m_x;
 }
-///retourne la coordonee y du sommet 
+///retourne la coordonee y du sommet
 int sommet::gety() const
 {
     return m_y;
@@ -58,7 +58,7 @@ void sommet::sety (int y)
     m_y=y;
 }
 ///fonction qui permet d'ajouter un adjacent au sommet
-void sommet::Ajouter_adj(sommet* adj,int poids)
+void sommet::Ajouter_adj(sommet* adj,float poids)
 {
     std::pair<sommet*,int> temp;
     temp.first = adj;
@@ -74,9 +74,9 @@ void sommet::Supprimer_adj(sommet*adj)
     m_adjacents.erase(m_adjacents.begin()+i);
     }
 }
-///fonction qui permet d'ajouter le poids a un adjacent 
+///fonction qui permet d'ajouter le poids a un adjacent
 ///notamment lorsque l'utilisateur decide de changer la ponderation
-void sommet::ajouterPoidsadjacents( int i, int poids)
+void sommet::ajouterPoidsadjacents( int i, float poids)
 {
     m_adjacents[i].second = poids;
 }

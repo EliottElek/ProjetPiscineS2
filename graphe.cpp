@@ -10,7 +10,8 @@ Graphe::Graphe() {}
 Graphe :: Graphe(std::string nomFichier, std::string nomFichier2,bool pondere):m_nomFichier{nomFichier}, m_nomFichier2{nomFichier2},m_pondere{pondere}
 {
     std::vector <std::string> id;
-    int oriente, ordre, numsommet, x, y, taille, idarete, sommet1, sommet2, taille2, idarete2, poids ;
+    int oriente, ordre, numsommet, x, y, taille, idarete, sommet1, sommet2, taille2, idarete2;
+    float poids ;
     std::string idsommet;
     std::istringstream iss;
     std::string strvalues ;
@@ -199,7 +200,7 @@ void Graphe::changerponderation(std::string fichier)
     else if (m_pondere==true)
     {
         int taille;
-        int poids;
+        float poids;
         int idarete;
         std::ifstream ifs(fichier);
         ///on lit le fichier recu en parametre
@@ -357,7 +358,7 @@ void Graphe::dessiner()
 }
 ///Les differentes versions de Dijkstra presentes dans ce programme ont ete faites a partir
 ///du code du TP3 Dijkstra du binome compose de Matthieu Chaix et Eliott Morcillo
-int Graphe::Dijkstra(int id_initial,int id_final)
+float Graphe::Dijkstra(int id_initial,int id_final)
 {
     ///Critere de tri & tri
     auto cmp = [](std::pair<sommet*,int>p1, std::pair<sommet*,int>p2)
@@ -367,7 +368,7 @@ int Graphe::Dijkstra(int id_initial,int id_final)
     ///Priority queue triee en fonction du poids a l'aide du tri ci-dessus
     std::priority_queue<std::pair<const sommet*,int>, std::vector<std::pair<sommet*,int>>, decltype(cmp)> file(cmp);
 
-    std::vector<int> done (m_ordre,-1);
+    std::vector<float> done (m_ordre,-1);
     std::vector<sommet*> road (m_ordre,nullptr);
     int longueur;
     int dispoarete=0; ///regarde si l'arete choisie est dispo
@@ -426,7 +427,7 @@ int Graphe::Dijkstra(int id_initial,int id_final)
     return done[id_final];
 }
 
-std::vector <int> Graphe::Dijkstra2(int id_initial,int id_final)
+std::vector <int> Graphe::Dijkstra2(int id_initial,int id_final)///ce dikjstra est le meme que le precedent mais permet de retourner la liste des sommets par lesquels nous sommes passés
 {
     /// Critere de tri & tri
     auto cmp = [](std::pair<sommet*,int>p1, std::pair<sommet*,int>p2)
@@ -436,7 +437,7 @@ std::vector <int> Graphe::Dijkstra2(int id_initial,int id_final)
     /// Priority queue triee en fonction du poids a l'aide du tri ci-dessus
     std::priority_queue<std::pair<const sommet*,int>, std::vector<std::pair<sommet*,int>>, decltype(cmp)> file(cmp);
 
-    std::vector<int> done (m_ordre,-1);
+    std::vector<float> done (m_ordre,-1);
     std::vector<sommet*> road (m_ordre,nullptr);
     int longueur;
     int dispoarete=0; ///regarde si l'arete choisie est dispo
@@ -494,7 +495,7 @@ std::vector <int> Graphe::Dijkstra2(int id_initial,int id_final)
             liste.push_back(temp) ;
         }
     }
-    return liste;
+    return liste;///on retourne la liste de sommets par lesquels nous sommes passés
 }
 
 /// Nos recherches/essais pour le calcul de l'indice de centralité d'intermédiaire
@@ -506,20 +507,20 @@ float Graphe :: centraliteintermediaritenonnormalise (int numsommet)
 
     for (int s=0 ; s<40 ; s++)
     {
-        for (int i=0; i<m_ordre-1-k; i++)
+        for (int i=0; i<m_ordre-1-k; i++)///on parcout le tableau
         {
-            recip.push_back(0);
-            if (i!=numsommet)
+            recip.push_back(0);///on initialise le tableau a 0
+            if (i!=numsommet)///il faut excluure toutes les aretes qui contiennent le sommet en question
             {
-                if (i+k+1!=numsommet)
+                if (i+k+1!=numsommet)///même principe que le if precedent
                 {
                     for (unsigned int j=0; j<Dijkstra2(i, i+k+1).size(); j++)
                     {
-                        recip[j]=(Dijkstra2(i, i+1+k)[j]);
+                        recip[j]=(Dijkstra2(i, i+1+k)[j]);///on stocke les valeurs recuperees par dikjstra
 
-                        if (recip[j]==numsommet)
+                        if (recip[j]==numsommet)///si le sommet en question est commun au resultat du dikjstra
                         {
-                            cpt++;
+                            cpt++;///on incremente le compteur
                         }
                     }
                 }
@@ -539,7 +540,7 @@ std::vector<int> Graphe::BFS(int id_initial)
     std::vector<int> l_preds;
     std::queue<int> file;
     std::queue<int> copie;
-    std::vector<int> done;
+    std::vector<float> done;
     bool temp =0;
 
     /// Creation de liste vide, puis enfilage et marquage de So
@@ -586,12 +587,12 @@ std::vector<int> Graphe::BFS(int id_initial)
     return l_preds;
 }
 
-float Graphe::nbdegre (int numsommet)
+float Graphe::nbdegre (int numsommet)///Cette fonction permet de récupérer le degre d'un sommet donné en parametre
 {
     int nbarete=0;
     for (int i=0; i<m_taille; i++)
     {
-        if ((m_aretes[i]->getsommet1()->getnum()==numsommet)||(m_aretes[i]->getsommet2()->getnum()==numsommet))
+        if ((m_aretes[i]->getsommet1()->getnum()==numsommet)||(m_aretes[i]->getsommet2()->getnum()==numsommet))///si le voisin du sommet considere correspond au sommet entré en parametre
         {
             ++nbarete;
         }
@@ -599,28 +600,27 @@ float Graphe::nbdegre (int numsommet)
     return nbarete;
 }
 
-float Graphe::centraldegrenonnormal (int numsommet)
+float Graphe::centraldegrenonnormal (int numsommet)///fonction permettant de determiner la centralite de degre non normalise
 {   std::cout << "" << std::endl;
     std::cout << "Sommet " <<numsommet<< ":" << std::endl;
-    std::cout << "CD(non normalise): " << nbdegre(numsommet) << std::endl;
+    std::cout << "CD(non normalise): " << nbdegre(numsommet) << std::endl;///on recupere simplement le resultat de la fonction nbdegre
     return nbdegre(numsommet);
 }
 
-float Graphe::centraldegrenormal (int numsommet)
+float Graphe::centraldegrenormal (int numsommet)///fonction permettant de determiner la centralite de degre normalise
 {
     std::cout << "CD(normalise): " << (nbdegre(numsommet)/(m_ordre-1)) << std::endl;
-    return (nbdegre(numsommet)/(m_ordre-1));
+    return (nbdegre(numsommet)/(m_ordre-1));///on recupere simplement le resultat de la fonction nbdegre et on divise par l'ordre - 1
 }
 
-float Graphe :: centraldeproximitenonnormalise(int numsommet)
+float Graphe :: centraldeproximitenonnormalise(int numsommet)///fonction permettant de determiner la centralite de proximite non normalise
 {
     float poids=0;
     float invpoids=0;
     for (int i=0; i<m_ordre; i++)
     {
-        poids+=Dijkstra(numsommet,i);
-        invpoids=1/poids;
-
+        poids+=Dijkstra(numsommet,i);///je recupere le poids récupéré par dikjstra
+        invpoids=1/poids;///je prends son inverse
     }
 
     std::cout<< "CP(non normalise): " << invpoids<< std::endl;
@@ -629,77 +629,74 @@ float Graphe :: centraldeproximitenonnormalise(int numsommet)
 
 }
 
-float Graphe :: centraldeproximitenormalise(int numsommet)
+float Graphe :: centraldeproximitenormalise(int numsommet)///fonction permettant de determiner la centralite de proximite normalise
 {
     float poids=0;
     float invpoids=0;
     for (int i=0; i<m_ordre; i++)
     {
-        poids+=Dijkstra(numsommet,i);
-        invpoids=(m_ordre-1)/poids;
-
+        poids+=Dijkstra(numsommet,i);///je recupere le poids récupéré par dikjstra
+        invpoids=(m_ordre-1)/poids;///je prends son inverse et le multiplie par l'ordre -1
     }
-
     std::cout<< "CP(normalise): " << invpoids<< std::endl;
 
     return invpoids;
-
 }
 
 
-int Graphe :: getnbvoisin (int numsommet)
+int Graphe :: getnbvoisin (int numsommet)///cette fonction permet de determiner le nombre de voisins
 {
     int cpt=0;
     for (unsigned int i =0 ; i<m_sommets.size(); i++)
     {
         if (m_sommets[i]->getnum()==numsommet)
         {
-            cpt=m_sommets[i]->getAdj().size();
+            cpt=m_sommets[i]->getAdj().size();///la valeur correspond a getAdj.size
         }
     }
     return cpt;
 }
 
 
-std::vector <float> Graphe :: centralvecteurpropre (int numsommet)
+std::vector <float> Graphe :: centralvecteurpropre (int numsommet)///cette fonction permet de determiner l'indice de centralite de vecteur propre
 {
     std::vector <float> Cvp ;
     std::vector <float> Csi  ;
     std::vector <float> lambda ;
     int k=0;
 
-    for (int j=0; j<m_ordre; j++)
+    for (int j=0; j<m_ordre; j++)///on initialise les cvp a 1 d'apres la consigne, et le csi à 0
     {
         Cvp.push_back(1);
         Csi.push_back(0);
     }
-    for (int l=0; l<100; l++)
+    for (int l=0; l<100; l++)///lambda vaut 0
     {
         lambda.push_back(0);
     }
     do
     {
 
-        lambda[k] = 0;
+        lambda[k] = 0;///bien reiniitialiser le tableau de lambda a chaque tour de boucle
         for (int i=0; i<m_ordre; i++)
         {
-            Csi[i] = 0;
+            Csi[i] = 0;///bien reinitialiser le tableau de csi à chaque tour de boucle
 
             for (int j=0; j<getnbvoisin(i); j++)
             {
-                Csi[i] = Csi[i]+Cvp[m_sommets[i]->getAdj()[j].first->getnum()];
+                Csi[i] = Csi[i]+Cvp[m_sommets[i]->getAdj()[j].first->getnum()];///csi est la somme des cvp
             }
-            lambda[k] = lambda[k]+(Csi[i]*Csi[i]);
+            lambda[k] = lambda[k]+(Csi[i]*Csi[i]);///lambda est le carre des csi
         }
-        lambda[k] = sqrt(lambda[k]) ;
+        lambda[k] = sqrt(lambda[k]) ;///le lambda total est la racine carre de la somme des csi au carre
 
         for (int j=0; j<m_ordre; j++)
         {
-            Cvp[j]=(Csi[j]/lambda[k]);
+            Cvp[j]=(Csi[j]/lambda[k]);///formule pour determiner cvp
         }
         ++k;
     }
-    while (((lambda[k-2]-lambda[k-1])>0.001)||(lambda[k-2]-lambda[k-1])<-0.001);
+    while (((lambda[k-2]-lambda[k-1])>0.001)||(lambda[k-2]-lambda[k-1])<-0.001);///condition d'arret pour determiner lambda k
 
         std::cout << "CVP(normalise): " << Cvp[numsommet] << " avec lambda: "<<lambda[k-1] << std::endl;
 
