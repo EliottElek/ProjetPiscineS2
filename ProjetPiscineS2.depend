@@ -104,17 +104,15 @@
 	<fstream>
 	<set>
 
-1588184869 source:c:\users\cap\projetpiscines2\graphe.cpp
+1588512960 source:c:\users\cap\projetpiscines2\graphe.cpp
 	"graphe.h"
 	"sommet.h"
 	"arete.h"
-	<math.h>
-	<stdlib.h>
-	<iostream>
-	<fstream>
-	<sstream>
+	<queue>
+	<stack>
+	"math.h"
 
-1588184499 c:\users\cap\projetpiscines2\graphe.h
+1588512960 c:\users\cap\projetpiscines2\graphe.h
 	<fstream>
 	<sstream>
 	<iostream>
@@ -124,44 +122,61 @@
 	"sommet.h"
 	"arete.h"
 
-1588071429 source:c:\users\cap\projetpiscines2\sommet.cpp
-	"sommet.h"
-
-1588084635 source:c:\users\cap\projetpiscines2\svgfile.cpp
-	"svgfile.h"
-	<iostream>
-	<sstream>
-
-1588084648 c:\users\cap\projetpiscines2\svgfile.h
-	<string>
-	<fstream>
-	<set>
-
-1587998622 source:c:\users\cap\projetpiscines2\couleur.cpp
-	"couleur.h"
-	"svgfile.h"
-	<iostream>
-
-1588021450 c:\users\cap\projetpiscines2\couleur.h
-	<string>
-	<cstdint>
-
-1588237117 source:c:\users\cap\projetpiscines2\main.cpp
+1588512960 source:c:\users\cap\projetpiscines2\sommet.cpp
 	"graphe.h"
 	"couleur.h"
 	"svgfile.h"
 	"sommet.h"
 	"arete.h"
+	"svgfile.h"
 
-1588246056 c:\users\cap\projetpiscines2\sommet.h
+1588253190 source:c:\users\cap\projetpiscines2\svgfile.cpp
+	"svgfile.h"
+	<iostream>
+	<sstream>
+
+1588512960 c:\users\cap\projetpiscines2\svgfile.h
 	<string>
+	<fstream>
+	<set>
+
+1588253190 source:c:\users\cap\projetpiscines2\couleur.cpp
+	"couleur.h"
+	"svgfile.h"
+	<iostream>
+
+1588253190 c:\users\cap\projetpiscines2\couleur.h
+	<string>
+	<cstdint>
+
+1588512960 source:c:\users\cap\projetpiscines2\main.cpp
+	"graphe.h"
+	"couleur.h"
+	"svgfile.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+	<math.h>
+
+1588512930 c:\users\cap\projetpiscines2\sommet.h
+	<string>
+	"svgfile.h"
 	<vector>
 
-1588021450 c:\users\cap\projetpiscines2\arete.h
+1588512960 c:\users\cap\projetpiscines2\arete.h
 	<string>
+	"sommet.h"
+	"svgfile.h"
 
-1588021450 source:c:\users\cap\projetpiscines2\arete.cpp
+1588512960 source:c:\users\cap\projetpiscines2\arete.cpp
 	"arete.h"
+	"sommet.h"
+	"svgfile.h"
+	<math.h>
+	<fstream>
+	<sstream>
+	<iostream>
+	<stdio.h>
 
 1588503010 source:c:\users\eliot\projetpiscines2\arete.cpp
 	"arete.h"
