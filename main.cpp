@@ -42,9 +42,9 @@ int main()
             bool ponderation=false;
             std::string fichierarbre;
             std::string fichierponderation;
-            std::cout<<"Entrez le nom du fichier de l'arbre :";
+            std::cout<<"Entrez le nom du fichier du graphe :";
             std::cin>>fichierarbre;
-            std::cout<<"L'arbre est-il pondere ?"<<std::endl;
+            std::cout<<"Le graphe est-il pondere ?"<<std::endl;
             std::cout<<"1.Oui     2.Non"<<std::endl;
             std::cin>>choixpondere;
             /// Blindage pour le choix s'il est différent de 1 ou 2
@@ -74,9 +74,9 @@ int main()
             do
             {
                 int choix2;
-                std::cout<<"Vous avez charge un graphe. Quel voulez-vous faire ?"<<std::endl;
+                std::cout<<"Vous avez charge un graphe. Que voulez-vous faire ?"<<std::endl;
                 std::cout<<"1.Supprimer des aretes"<<std::endl;
-                std::cout<<"2.Verification de la connexite"<<std::endl;
+                std::cout<<"2.Verifier la connexite du graphe"<<std::endl;
                 std::cout<<"3.Calculer les indices"<<std::endl;
                 std::cout<<"4.Changer le systeme de ponderation"<<std::endl;
                 std::cout<<"5.Changer l'aspect des fleches"<<std::endl;
@@ -144,9 +144,9 @@ int main()
 
                     }
                     if (connexe==1)
-                        std::cout<<"l'arbre est connexe."<<std::endl;
+                        std::cout<<"le graphe est connexe."<<std::endl;
                     else
-                        std::cout<<"l'arbre n'est pas connexe."<<std::endl;
+                        std::cout<<"le graphe n'est pas connexe."<<std::endl;
                     ///on set la connexite du graphe
                     g.setconnexite(connexe);
                     g.dessiner();
@@ -173,7 +173,7 @@ int main()
                             float e= g.centraldeproximitenormalise(m);
                             os << "Sommet" << m << " : CD (non normalise)= "<< a ;
                             os << "  CD (normalise)= "<< b ;
-                            os << "  CVP (normalise) = " << c[m];
+                            os << "  CVP (normalise)= " << c[m];
                             os << " CP (non normalise)= "<< d;
                             os << " CP (normalise)= "<< e<< std::endl;
                         }
@@ -222,7 +222,7 @@ int main()
                     ///(disponible uniquement si le graphe est oriente)
                     system("cls");
                     int choixaspect;
-                    std::cout<<"Comment voulez-vous les fleches ?"<<std::endl;
+                    std::cout<<"Comment voulez-vous que les fleches soient ?"<<std::endl;
                     std::cout<<"1.Pleines    2.Creuses"<<std::endl;
                     std::cout<<"choix : ";
                     std::cin>>choixaspect;

@@ -34,11 +34,11 @@ Graphe :: Graphe(std::string nomFichier, std::string nomFichier2,bool pondere):m
     std::cout << "Ouverture des 2 fichiers:" << std::endl ;
     if (m_orientation==false)
     {
-        std::cout << "Orientation: non oriente" << std::endl;
+        std::cout << "Le graphe est non-oriente" << std::endl;
     }
     else
     {
-        std::cout << "Orientation : oriente" << std::endl;
+        std::cout << "Le graphe est oriente" << std::endl;
     }
 
     std::cout << "Il y'a " << ordre <<" sommets" << std::endl ;
@@ -534,7 +534,7 @@ float Graphe :: centraliteintermediaritenonnormalise (int numsommet)
 }
 
 ///l'utilisation du BFS sert ici a connaitre la connexite du graphe.
-///Ce code a ete cree pour le TP2 par le binome compose de Matthieu Chaix et Eliott Morcillo
+///Ce code a ete cree pour le TP2 par le binome compose de Matthieu Chaix et Eliott Morcillo(TD3)
 std::vector<int> Graphe::BFS(int id_initial)
 {
     std::vector<int> l_preds;

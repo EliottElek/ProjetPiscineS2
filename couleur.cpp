@@ -9,7 +9,7 @@ Couleur::Couleur(int rouge, int vert, int bleu)
     m_bleu = bleu;
 }
 
-Couleur::Couleur()// Délégation de constructeur
+Couleur::Couleur()/// Délégation de constructeur
 {
     m_rouge = 0;
     m_vert = 0;
