@@ -6,8 +6,6 @@
 class arete
 {
 private :
-
-    int m_x, m_y;
     int m_numero;
     std:: string m_color;
     sommet* m_sommet1;
@@ -26,12 +24,7 @@ public:
     sommet* getsommet2();
     int getid()const;
     int getpoids()const;
-    int getx()const;
-    int gety()const;
     void setpoids(int poids);
-
-
-
 };
 
 #endif // ARETE_H_INCLUDED

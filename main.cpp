@@ -11,6 +11,7 @@
 
 int main()
 {
+    ///fichier dans lequel on va enregistrer nos indices
     std::ofstream os("fichier3.txt");
     int choix=0, ok=0;
     int idarete=0;
@@ -52,6 +53,7 @@ int main()
                 fichierponderation="rien";
                 ponderation = false;
             }
+            ///creation du graphe et attribution de ses differentes caracteristiques
             Graphe g(fichierarbre,fichierponderation, ponderation);
             g.setpondere(choixpondere);
             g.dessiner();
@@ -62,22 +64,31 @@ int main()
                 int choix2;
                 std::cout<<"Vous avez charge un arbre. Quel voulez-vous faire ?"<<std::endl;
                 std::cout<<"1.Supprimer des aretes"<<std::endl;
-                std::cout<<"2.Dikjstra d'un sommet a un autre"<<std::endl;
-                std::cout<<"3.Verification de la connexite"<<std::endl;
-                std::cout<<"4.Calculer les indices"<<std::endl;
-                std::cout<<"5.Changer le systeme de ponderation"<<std::endl;
-                std::cout<<"6.Changer l'aspect des fleches"<<std::endl;
-                std::cout<<"7.Retour"<<std::endl;
+                std::cout<<"2.Verification de la connexite"<<std::endl;
+                std::cout<<"3.Calculer les indices"<<std::endl;
+                std::cout<<"4.Changer le systeme de ponderation"<<std::endl;
+                std::cout<<"5.Changer l'aspect des fleches"<<std::endl;
+                std::cout<<"6.Retour"<<std::endl;
+                std::cout<<"choix :";
+                std::cin>>choix2;
                 do
                 {
-                    std::cout<<"choix : ";
-                    std::cin>>choix2;
+                    if ((choix2>0)||(choix2<7))
+                    {
+                        if ((choix2==5)&&(g.getOrientation()==false))
+                        {
+                            std::cout<<"Le gaphe n'est pas oriente."<<std::endl;
+                            std::cout<<"choix :";
+                            std::cin>>choix2;
+                        }
+                    }
                 }
-                while ((choix2<1)||(choix2>8));
+                while((choix<1)||(choix>6));///blindage
                 switch (choix2)
                 {
                 case 1:
                 {
+                    ///cas de suppression d'aretes
                     system("cls");
                     std::cout<<"Il reste "<<g.gettabaretes().size()<<" aretes."<<std::endl;
                     std::cout<<"il reste les aretes : ";
@@ -94,29 +105,15 @@ int main()
                 break;
                 case 2:
                 {
-                    system("cls");
-                    int poids;
-                    int sommetdepart, sommetarrivee;
-                    std::cout<<"sommet de depart: ";
-                    std::cin>>sommetdepart;
-                    std::cout<<std::endl;
-                    std::cout<<"sommet d'arrivee: ";
-                    std::cin>>sommetarrivee;
-                    poids=g.Dijkstra(sommetdepart,sommetarrivee);
-                    std::cout<<std::endl;
-                    system("pause");
-                    system("cls");
-
-                }
-                break;
-                case 3:
-                {
+                    ///cas de verification de la connexite
                     int connexe=1;
                     system("cls");
-                    std::vector<unsigned int>vec;///vecteur regroupant l'ensemble du nombre de chemins possibles à partir de tous les sommets
+                    std::vector<unsigned int>vec;///vecteur regroupant l'ensemble du nombre de chemins possibles a partir de tous les sommets
+                    ///pour tous les sommets
                     for (size_t i=0; i<g.gettabsommets().size(); ++i)
                     {
                         std::vector<int>vecteur = g.BFS(g.gettabsommets()[i]->getnum());
+                        ///on regarde les sommets qu'il peut atteindre grace au BFS
                         std::cout<<"nombre de sommets accessibles depuis: "<<g.gettabsommets()[i]->getid()<<" : "<<vecteur.size()<<" sommets accessibles."<<std::endl;
                         vec.push_back(vecteur.size());
                         for (size_t j=0; j<vecteur.size(); ++j)
@@ -125,8 +122,10 @@ int main()
                     std::cout<<std::endl;
                     for (unsigned int j=0; j<vec.size(); ++j)
                     {
+                        ///pour tous les chemins de tous les sommets
                         if (vec[j]!=(g.gettabsommets().size()))
                         {
+                            ///si un seul des sommets a un nombre de sommets ateignables different des autres, cela indique que le graphe n'est pas connexe
                             connexe=0;
                             break;
                         }
@@ -136,6 +135,7 @@ int main()
                         std::cout<<"l'arbre est connexe."<<std::endl;
                     else
                         std::cout<<"l'arbre n'est pas connexe ta maman."<<std::endl;
+                    ///on set la connexite du graphe
                     g.setconnexite(connexe);
                     g.dessiner();
                     std::cout<<std::endl;
@@ -144,12 +144,13 @@ int main()
 
                 }
                 break;
-                case 4:
+                case 3:
                 {
+                    ///cas de calcul des differents indices
                     system("cls");
                     std::vector <float> c = g.centralvecteurpropre ();
                     std::ofstream os("fichier3.txt");
-
+                    ///a chaque nouveau calcul on modifie le fichier de sauvegarde
                     if(os.is_open())
                     {
                         for (unsigned int m=0; m<g.gettabsommets().size(); m++)
@@ -170,8 +171,9 @@ int main()
 
                 }
                 break;
-                case 5:
+                case 4:
                 {
+                    ///cas du changement de ponderation
                     system("cls");
                     int choix;
                     std::string fichier;
@@ -202,20 +204,23 @@ int main()
 
                 }
                 break;
-                case 6:
-                    {
-                        system("cls");
-                        int choixaspect;
-                        std::cout<<"Comment voulez-vous les fleches ?"<<std::endl;
-                        std::cout<<"1.Pleines    2.Creuses"<<std::endl;
-                        std::cout<<"choix : ";
-                        std::cin>>choixaspect;
-                        g.setflechePleine(choixaspect);
-                        g.dessiner();
-                        system("cls");
+                case 5:
+                {
+                    ///cas ou l'utilisateur decide de changer l'aspect des fleches
+                    ///(disponible uniquement si le graphe est oriente)
+                    system("cls");
+                    int choixaspect;
+                    std::cout<<"Comment voulez-vous les fleches ?"<<std::endl;
+                    std::cout<<"1.Pleines    2.Creuses"<<std::endl;
+                    std::cout<<"choix : ";
+                    std::cin>>choixaspect;
+                    g.setflechePleine(choixaspect);
+                    g.dessiner();
+                    system("cls");
 
-                    }break;
-                case 7:
+                }
+                break;
+                case 6:
                 {
                     retour = 1;
                     system("cls");

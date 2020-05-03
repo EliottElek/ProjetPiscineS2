@@ -34,6 +34,7 @@ public :
     void setFichier1(std::string fichier);
     void setFichier2(std::string fichier);
     void setpondere(int valeur);
+    bool getOrientation();
     std::vector<int>BFS(int id_initial);
     int Dijkstra(int id_initial,int id_final);
     std::vector <int> Dijkstra2(int id_initial,int id_final);
