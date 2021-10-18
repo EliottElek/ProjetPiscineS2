@@ -1,0 +1,30 @@
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Segoe UI Historic, Segoe UI, Helvetica, Arial, sans-serif!important;
+}
+body {
+  overflow-y: hidden;
+}
+
+.App {
+  color: #fff;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 20px;
+  margin: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(165, 164, 164, 0.76);
+  border-radius: 20px;
+}
