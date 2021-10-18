@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { List, Grid, Typography } from "@mui/material";
+import React from "react";
+import { List, Grid } from "@mui/material";
 import MessageForm from "./MessageForm/MessageForm";
 import Message from "./Message/Message";
 import AppBar from "./AppBar/AppBar";

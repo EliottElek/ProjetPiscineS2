@@ -13,10 +13,7 @@ const styles = {
 };
 
 const App = () => {
-  const [channel, setChannel] = useState(channels[0]);
-  const handleChangeChannel = (newChannel) => {
-    setChannel(newChannel);
-  };
+  const [channel] = useState(channels[0]);
   const [messages, setMessages] = useState([
     {
       author: "Sergei Kudinov",

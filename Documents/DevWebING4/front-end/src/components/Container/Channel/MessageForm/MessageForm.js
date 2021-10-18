@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import SendIcon from "@mui/icons-material/Send";
 import getCurrentTime from "../../../../functions/time";
@@ -29,7 +29,7 @@ function gotoBottom(id) {
   });
 }
 
-const MessageForm = ({ addMessage, setTime }) => {
+const MessageForm = ({ addMessage }) => {
   const [message, setMessage] = useState("");
   const handleChange = (e) => {
     setMessage(e.target.value);
@@ -38,7 +38,6 @@ const MessageForm = ({ addMessage, setTime }) => {
     if (message !== "") {
       var time = getCurrentTime();
       e.preventDefault();
-      const data = new FormData(e.target);
       addMessage({
         content: message,
         author: "david Worms",

@@ -1,7 +1,6 @@
 import React from "react";
 import { Grid } from "@mui/material";
 import Channel from "./Channel/Channel";
-import RightContainer from "./RightContainer/RightContainer";
 import LeftContainer from "./LeftContainer/LeftContainer";
 
 const styles = {

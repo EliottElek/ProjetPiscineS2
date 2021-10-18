@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
@@ -12,14 +12,14 @@ const styles = {
     width: "95%",
     padding: 0,
     margin: "1px auto 1px auto",
-    borderRadius: "8px",
+    borderRadius: "4px",
   },
   rootActive: {
     background: "#424242",
     width: "95%",
     padding: 0,
     margin: "1px auto 1px auto",
-    borderRadius: "8px",
+    borderRadius: "4px",
   },
   text: {
     color: "#8e9297",
@@ -30,7 +30,6 @@ const styles = {
   avatar: { marginLeft: 3, width: 30, height: 30 },
 };
 const ChannelItem = ({ channel }) => {
-  const [active, setActive] = useState(false);
   return (
     <ListItemButton className="hover" style={styles.root}>
       <ListItem style={styles.item}>
